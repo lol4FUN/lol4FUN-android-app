@@ -20,13 +20,16 @@ buildscript {
             'glide'                 : '4.8.0',
             'gson'                  : '2.8.5',
             'multidex'              : '1.0.3',
+            'facebook'              : '4.42.0',
             'firebaseAnalytics'     : '17.2.1',
-            'circleImageView'       : '3.0.0'
+            'firebaseUIAuth'        : '6.2.0',
+            'firebaseAuth'          : '19.2.0'
     ]
 
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.gradle}"
