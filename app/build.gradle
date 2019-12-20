@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "br"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,18 +35,20 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
 
     //firebase
     implementation "com.google.firebase:firebase-analytics:${versions.firebaseAnalytics}"
     implementation "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
     implementation "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
+    implementation "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
 
     //core
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
     implementation "androidx.core:core-ktx:${versions.coreKtx}"
 
     //support
+    implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     // Required only if Facebook login support is required
