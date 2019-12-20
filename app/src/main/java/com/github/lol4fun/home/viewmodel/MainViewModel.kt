@@ -15,4 +15,8 @@ class MainViewModel : ViewModel() {
     fun getListOfProviders(): List<AuthUI.IdpConfig> {
         return mainBusiness.getListOfProviders()
     }
+
+    fun saveUserFirestore() {
+        mainBusiness.saveUserFirestore()
+    }
 }

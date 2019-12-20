@@ -10,6 +10,7 @@ import com.github.lol4fun.util.ConstantsUtil.Main.RC_SIGN_IN
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.app.Activity
+import com.github.lol4fun.nickname.view.NicknameActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,14 +52,13 @@ class MainActivity : AppCompatActivity() {
 
             // Successfully signed in
             if (resultCode == Activity.RESULT_OK) {
-                //deu certo
-//                startActivity(SignedInActivity.createIntent(this, response))
-//                finish()
+                mainViewModel.saveUserFirestore()
+                startActivity(Intent(this, NicknameActivity::class.java))
             } else {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-//                    showSnackbar(R.string.sign_in_cancelled)
+//                    showSnackBar(R.string.sign_in_canceled_by_user)
                     return
                 }
 
