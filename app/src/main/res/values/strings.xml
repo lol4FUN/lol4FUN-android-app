@@ -4,4 +4,9 @@
     <string name="facebook_application_id" translatable="false">592673608148318</string>
     <!-- Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs. -->
     <string name="facebook_login_protocol_scheme" translatable="false">fb592673608148318</string>
+
+    <string name="sign_in_canceled_by_user">Login cancelado pelo usuário</string>
+    <string name="hint_nickname">Digite seu nome de invocador</string>
+    <string name="nickname_continue_button">Salvar</string>
+    <string name="nickname_error_blank_or_invalid">O nome do invocador é vazio ou inválido</string>
 </resources>
