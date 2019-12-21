@@ -16,9 +16,7 @@ class NicknameViewModel : BaseViewModel() {
         if (business.isSummonerInvalid(summonerName)) {
             onErrorSummonerNameLiveData.postValue(R.string.nickname_error_blank_or_invalid)
         } else {
-            scope.launch {
-                business.saveSummonerNameAndIds(summonerName)
-            }
+            business.saveSummonerNameAndIds(summonerName)
         }
     }
 

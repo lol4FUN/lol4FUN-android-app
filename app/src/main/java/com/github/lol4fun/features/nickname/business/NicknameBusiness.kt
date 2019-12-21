@@ -1,8 +1,12 @@
 package com.github.lol4fun.features.nickname.business
 
+import com.github.lol4fun.BaseBusiness
+import com.github.lol4fun.core.api.Status
+import com.github.lol4fun.core.model.SummonerInfo
 import com.github.lol4fun.core.repository.nickname.NicknameRepository
+import kotlinx.coroutines.launch
 
-class NicknameBusiness  {
+class NicknameBusiness : BaseBusiness() {
 
     private val nicknameRepository = NicknameRepository()
 
@@ -11,7 +15,22 @@ class NicknameBusiness  {
     }
 
     fun saveSummonerNameAndIds(summonerName: String) {
-        nicknameRepository.saveSummonerNameAndIds(summonerName)
+        scope.launch {
+            val resource = nicknameRepository.getSummonerNameByNameAtRiotApi(summonerName)
+
+            when (resource.status) {
+                Status.ERROR -> {
+                    //todo handle error
+                }
+                Status.SUCCESS -> {
+                    val summonerInfo = resource.data as? SummonerInfo
+
+                    summonerInfo?.let {
+                        nicknameRepository.saveSummonerInfoAtFirestore(it)
+                    }
+                }
+            }
+        }
     }
 
 }
