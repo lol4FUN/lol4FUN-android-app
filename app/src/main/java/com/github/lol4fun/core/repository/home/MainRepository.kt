@@ -1,6 +1,7 @@
 package com.github.lol4fun.core.repository.home
 
 import com.github.lol4fun.core.model.Customer
+import com.github.lol4fun.core.repository.BaseRepository
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_DARK
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_EMAIL
@@ -12,10 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
-class MainRepository {
-
-    private val db = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
+class MainRepository : BaseRepository() {
 
     fun saveUserFirestore() {
         val currentUser = auth.currentUser
