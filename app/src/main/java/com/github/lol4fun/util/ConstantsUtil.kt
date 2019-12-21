@@ -20,6 +20,9 @@ class ConstantsUtil {
         const val FIELD_USER_SUMMONER_NAME = "summonerName"
         const val FIELD_USER_REGION = "region"
         const val FIELD_USER_REGION_BR = "br1"
+        const val FIELD_USER_RIOT_ACCOUNT_ID = "accountId"
+        const val FIELD_USER_RIOT_ID = "id"
+        const val FIELD_USER_RIOT_PROFILE_ICON_ID = "profileIconId"
     }
 
     object Api {
@@ -27,5 +30,9 @@ class ConstantsUtil {
         const val BASE_URL = "https://br1.api.riotgames.com/lol/"
         const val HEADER_RIOT_TOKEN_NAME = "X-Riot-Token"
         const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-d566318f-c2c7-4dc8-b101-ea4190c4b184"
+    }
+
+    object Error {
+        const val ERROR_DEFAULT = "Erro desconhecido, por favor, tente novamente"
     }
 }
