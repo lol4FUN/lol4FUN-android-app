@@ -1,3 +1,15 @@
 package com.github.lol4fun.core.api
 
-interface RiotApi
+import com.github.lol4fun.core.model.SummonerInfo
+import kotlinx.coroutines.Deferred
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+interface RiotApi {
+
+    @GET("summoner/v4/summoners/by-name/{summonerName}")
+    fun getSummonerNameByName(
+        @Path(value = "summonerName", encoded = true) summonerName: String
+    ): Deferred<Response<SummonerInfo>>
+}
