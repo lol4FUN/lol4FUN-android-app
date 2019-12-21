@@ -1,9 +1,9 @@
-package com.github.lol4fun.nickname.viewmodel
+package com.github.lol4fun.features.nickname.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.github.lol4fun.BaseViewModel
 import com.github.lol4fun.R
-import com.github.lol4fun.nickname.business.NicknameBusiness
+import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import kotlinx.coroutines.launch
 
 class NicknameViewModel : BaseViewModel() {

@@ -1,11 +1,11 @@
-package com.github.lol4fun.nickname.view
+package com.github.lol4fun.features.nickname.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.github.lol4fun.R
 import com.github.lol4fun.extensions.showSnackBar
-import com.github.lol4fun.nickname.viewmodel.NicknameViewModel
+import com.github.lol4fun.features.nickname.viewmodel.NicknameViewModel
 import kotlinx.android.synthetic.main.activity_nickname.*
 
 class NicknameActivity : AppCompatActivity() {

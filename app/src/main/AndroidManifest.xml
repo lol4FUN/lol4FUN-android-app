@@ -16,11 +16,11 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".nickname.view.NicknameActivity"
+            android:name="com.github.lol4fun.features.nickname.view.NicknameActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".home.view.MainActivity"
+            android:name="com.github.lol4fun.features.home.view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

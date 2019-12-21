@@ -1,8 +1,8 @@
-package com.github.lol4fun.home.viewmodel
+package com.github.lol4fun.features.home.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.firebase.ui.auth.AuthUI
-import com.github.lol4fun.home.business.MainBusiness
+import com.github.lol4fun.features.home.business.MainBusiness
 
 class MainViewModel : ViewModel() {
 

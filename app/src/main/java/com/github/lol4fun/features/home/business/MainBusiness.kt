@@ -1,4 +1,4 @@
-package com.github.lol4fun.home.business
+package com.github.lol4fun.features.home.business
 
 import com.firebase.ui.auth.AuthUI
 import com.github.lol4fun.core.repository.home.MainRepository

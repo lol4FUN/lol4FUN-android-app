@@ -1,16 +1,16 @@
-package com.github.lol4fun.home.view
+package com.github.lol4fun.features.home.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
 import com.github.lol4fun.R
-import com.github.lol4fun.home.viewmodel.MainViewModel
+import com.github.lol4fun.features.home.viewmodel.MainViewModel
 import com.github.lol4fun.util.ConstantsUtil.Main.RC_SIGN_IN
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.app.Activity
-import com.github.lol4fun.nickname.view.NicknameActivity
+import com.github.lol4fun.features.nickname.view.NicknameActivity
 
 class MainActivity : AppCompatActivity() {
 
