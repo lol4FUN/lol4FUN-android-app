@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/app_nav_graph" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/homeNavigation"
+    tools:ignore="UnusedNavigation">
+
+    <include-dynamic
+        android:id="@+id/homeNavigation"
+        app:graphPackage="com.github.lol4fun.home"
+        app:graphResName="home_nav_graph"
+        app:moduleName="homef" />
+
+    <include-dynamic
+        android:id="@+id/championsNavigation"
+        app:graphPackage="com.github.lol4fun.champions"
+        app:graphResName="champions_nav_graph"
+        app:moduleName="champions" />
+
+    <include-dynamic
+        android:id="@+id/profileNavigation"
+        app:graphPackage="com.github.lol4fun.profile"
+        app:graphResName="profile_nav_graph"
+        app:moduleName="profile" />
+
+    <include-dynamic
+        android:id="@+id/searchNavigation"
+        app:graphPackage="com.github.lol4fun.search"
+        app:graphResName="search_nav_graph"
+        app:moduleName="search" />
+</navigation>
