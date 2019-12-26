@@ -10,7 +10,7 @@
         android:id="@+id/homeNavigation"
         app:graphPackage="com.github.lol4fun.home"
         app:graphResName="home_nav_graph"
-        app:moduleName="homef" />
+        app:moduleName="home" />
 
     <include-dynamic
         android:id="@+id/championsNavigation"

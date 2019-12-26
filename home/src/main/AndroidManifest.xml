@@ -1,6 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:dist="http://schemas.android.com/apk/distribution"
-    xmlns:tools="http://schemas.android.com/tools"
+<manifest xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.github.home">
 
     <dist:module
@@ -10,10 +8,5 @@
         </dist:delivery>
         <dist:fusing dist:include="true" />
     </dist:module>
-
-    <application
-        android:hasCode="true"
-        tools:replace="android:hasCode">
-    </application>
 </manifest>
 
