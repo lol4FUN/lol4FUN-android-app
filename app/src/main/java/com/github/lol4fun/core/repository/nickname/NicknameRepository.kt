@@ -10,6 +10,7 @@ import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_RIOT_PROFILE_ICON_ID
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_SUMMONER_NAME
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseNames.DATABASE_CUSTOMERS
+import java.util.*
 
 class NicknameRepository : BaseRepository() {
 
@@ -21,7 +22,7 @@ class NicknameRepository : BaseRepository() {
 
     fun saveSummonerInfoAtFirestore(summonerInfo: SummonerInfo) {
         db.collection(DATABASE_CUSTOMERS)
-            .document(auth.uid ?: "")
+            .document(auth.uid ?: UUID.randomUUID().toString())
             .update(
                 mapOf(
                     FIELD_USER_SUMMONER_NAME to summonerInfo.name,
