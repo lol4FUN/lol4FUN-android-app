@@ -32,9 +32,6 @@ class MainBusiness {
         return when(errorCode) {
             UNKNOWN_ERROR -> R.string.fui_error_unknown
             NO_NETWORK -> R.string.fui_no_internet
-            PLAY_SERVICES_UPDATE_CANCELLED,
-            PROVIDER_ERROR,
-            DEVELOPER_ERROR -> R.string.fui_error_unknown
             ANONYMOUS_UPGRADE_MERGE_CONFLICT -> R.string.error_merge_anonymous_account
             ERROR_USER_DISABLED -> R.string.error_user_disabled
             EMAIL_MISMATCH_ERROR -> R.string.error_email_mismatch
