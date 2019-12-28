@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface RiotApi {
 
     @GET("summoner/v4/summoners/by-name/{summonerName}")
-    fun getSummonerNameByName(
+    fun getSummonerNameByNameAsync(
         @Path(value = "summonerName", encoded = true) summonerName: String
     ): Deferred<Response<SummonerInfo>>
 }
