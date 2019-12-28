@@ -10,7 +10,10 @@ import com.github.lol4fun.util.ConstantsUtil.Main.RC_SIGN_IN
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.app.Activity
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.github.lol4fun.features.nickname.view.NicknameActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         checkIfUserIsLogged()
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation() {
+        val navController = navHostFragment.findNavController()
+        bottomNav.setupWithNavController(navController)
     }
 
     private fun checkIfUserIsLogged() {
