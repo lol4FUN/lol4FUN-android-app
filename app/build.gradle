@@ -57,7 +57,7 @@ dependencies {
 
     //support
     implementation "com.google.android.material:material:${versions.material}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    api "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     //http
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
@@ -69,8 +69,6 @@ dependencies {
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
     implementation "com.facebook.android:facebook-login:${versions.facebook}"
     implementation "com.facebook.android:facebook-android-sdk:${versions.facebook}"
-    implementation "com.google.android.material:material:${versions.material}"
-    api "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     //tests
     testImplementation 'junit:junit:4.12'
