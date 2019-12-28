@@ -19,4 +19,8 @@ class MainViewModel : ViewModel() {
     fun saveUserFirestore() {
         mainBusiness.saveUserFirestore()
     }
+
+    fun getErrorLogin(errorCode: Int?): Int {
+        return mainBusiness.getErrorLogin(errorCode)
+    }
 }

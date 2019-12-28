@@ -7,11 +7,11 @@ import com.firebase.ui.auth.AuthUI
 import com.github.lol4fun.R
 import com.github.lol4fun.features.home.viewmodel.MainViewModel
 import com.github.lol4fun.util.ConstantsUtil.Main.RC_SIGN_IN
-import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.app.Activity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.features.nickname.view.NicknameActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -61,23 +61,22 @@ class MainActivity : AppCompatActivity() {
 
             // Successfully signed in
             if (resultCode == Activity.RESULT_OK) {
+                //todo remover login do usuário em caso de erro na insercao no firestore
+                //todo e decidir o que fazer
                 mainViewModel.saveUserFirestore()
                 startActivity(Intent(this, NicknameActivity::class.java))
             } else {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-//                    showSnackBar(R.string.sign_in_canceled_by_user)
+                    //todo pode forcar como convidado, para o usuario ficar no app
+                    finish()
                     return
                 }
 
-                if (response.error!!.errorCode == ErrorCodes.NO_NETWORK) {
-//                    showSnackbar(R.string.no_internet_connection)
-                    return
-                }
+                showSnackBar(bottomNav, mainViewModel.getErrorLogin(response.error?.errorCode))
 
-//                showSnackbar(R.string.unknown_error)
-//                Log.e(FragmentActivity.TAG, "Sign-in error: ", response.error)
+                return
             }
         }
     }
