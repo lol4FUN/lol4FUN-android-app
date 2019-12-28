@@ -1,4 +1,4 @@
-package com.github.lol4fun.core.api
+package com.github.lol4fun.core.model
 
 data class ApiError(
     var statusCode: Int? = null,

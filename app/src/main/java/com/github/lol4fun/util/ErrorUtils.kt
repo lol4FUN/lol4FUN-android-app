@@ -1,6 +1,6 @@
 package com.github.lol4fun.util
 
-import com.github.lol4fun.core.api.ApiError
+import com.github.lol4fun.core.model.ApiError
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_BAD_REQUEST
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_DEFAULT
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_UNAUTHORIZED
