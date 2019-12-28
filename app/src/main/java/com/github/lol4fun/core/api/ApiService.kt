@@ -10,7 +10,7 @@ object ApiService {
 
     val riotApi: RiotApi = getRiotApiClient().create(RiotApi::class.java)
 
-    fun getRiotApiClient() : Retrofit {
+    private fun getRiotApiClient() : Retrofit {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(HeaderInterceptor())
             .build()
