@@ -1,6 +1,6 @@
 package com.github.lol4fun.core.api
 
-object ApiError {
-    var statusCode: Int? = null
+data class ApiError(
+    var statusCode: Int? = null,
     var message: String? = null
-}
+)
