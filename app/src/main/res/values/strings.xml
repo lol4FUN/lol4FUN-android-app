@@ -9,4 +9,9 @@
     <string name="hint_nickname">Digite seu nome de invocador</string>
     <string name="nickname_continue_button">Salvar</string>
     <string name="nickname_error_blank_or_invalid">O nome do invocador é vazio ou inválido</string>
+
+    <string name="home">Home</string>
+    <string name="champions">Champions</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
 </resources>

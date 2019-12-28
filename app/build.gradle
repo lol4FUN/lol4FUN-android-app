@@ -29,6 +29,8 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    dynamicFeatures = [":home", ":champions", ":search", ":profile"]
 }
 
 dependencies {
@@ -41,6 +43,7 @@ dependencies {
     //jetpack
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
 
     //firebase
     implementation "com.google.firebase:firebase-analytics:${versions.firebaseAnalytics}"
@@ -49,8 +52,8 @@ dependencies {
     implementation "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
 
     //core
-    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
-    implementation "androidx.core:core-ktx:${versions.coreKtx}"
+    api "androidx.appcompat:appcompat:${versions.appCompat}"
+    api "androidx.core:core-ktx:${versions.coreKtx}"
 
     //support
     implementation "com.google.android.material:material:${versions.material}"
@@ -66,11 +69,18 @@ dependencies {
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
     implementation "com.facebook.android:facebook-login:${versions.facebook}"
     implementation "com.facebook.android:facebook-android-sdk:${versions.facebook}"
+    implementation "com.google.android.material:material:${versions.material}"
+    api "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     //tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Navigation
+//    api "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+    api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+    api "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 }
 
 apply plugin: 'com.google.gms.google-services'
