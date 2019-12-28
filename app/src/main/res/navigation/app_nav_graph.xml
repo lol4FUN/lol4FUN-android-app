@@ -3,30 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/homeNavigation"
+    app:startDestination="@id/homeFragment"
     tools:ignore="UnusedNavigation">
 
-    <include-dynamic
-        android:id="@+id/homeNavigation"
-        app:graphPackage="com.github.lol4fun.home"
-        app:graphResName="home_nav_graph"
-        app:moduleName="home" />
+    <fragment
+        app:moduleName="home"
+        android:id="@+id/homeFragment"
+        android:name="com.github.home.HomeFragment"
+        android:label="HomeFragment"/>
 
-    <include-dynamic
-        android:id="@+id/championsNavigation"
-        app:graphPackage="com.github.lol4fun.champions"
-        app:graphResName="champions_nav_graph"
-        app:moduleName="champions" />
+    <fragment
+        app:moduleName="champions"
+        android:id="@+id/championsFragment"
+        android:name="com.github.champions.ChampionsFragment"
+        android:label="ChampionsFragment"/>
 
-    <include-dynamic
-        android:id="@+id/profileNavigation"
-        app:graphPackage="com.github.lol4fun.profile"
-        app:graphResName="profile_nav_graph"
-        app:moduleName="profile" />
+    <fragment
+        app:moduleName="profile"
+        android:id="@+id/profileFragment"
+        android:name="com.github.profile.ProfileFragment"
+        android:label="ProfileFragment"/>
 
-    <include-dynamic
-        android:id="@+id/searchNavigation"
-        app:graphPackage="com.github.lol4fun.search"
-        app:graphResName="search_nav_graph"
-        app:moduleName="search" />
+    <fragment
+        app:moduleName="search"
+        android:id="@+id/searchFragment"
+        android:name="com.github.search.SearchFragment"
+        android:label="SearchFragment"/>
 </navigation>
