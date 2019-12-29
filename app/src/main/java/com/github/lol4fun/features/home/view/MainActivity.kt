@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private fun checkIfUserIsLogged() {
         if (!mainViewModel.userIsLogged()) {
             startLoginActivity()
+        } else {
+            startActivity(Intent(this, NicknameActivity::class.java))
         }
     }
 

@@ -1,12 +1,15 @@
 package com.github.lol4fun.features.nickname.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.github.lol4fun.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.lol4fun.R
 import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import com.github.lol4fun.features.nickname.listener.NicknameListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class NicknameViewModel : BaseViewModel(), NicknameListener {
+class NicknameViewModel : ViewModel(), NicknameListener {
 
     private val business: NicknameBusiness by lazy { NicknameBusiness(this) }
     
@@ -19,7 +22,9 @@ class NicknameViewModel : BaseViewModel(), NicknameListener {
         if (business.isSummonerInvalid(summonerName)) {
             onErrorSummonerNameLiveData.postValue(R.string.nickname_error_blank_or_invalid)
         } else {
-            business.saveSummonerNameAndIds(summonerName)
+            viewModelScope.launch(Dispatchers.IO) {
+                business.saveSummonerNameAndIds(summonerName)
+            }
         }
     }
 
