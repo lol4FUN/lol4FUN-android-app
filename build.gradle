@@ -8,7 +8,7 @@ buildscript {
             'coroutines'            : '1.2.1',
             'appCompat'             : '1.2.0-alpha01',
             'coreKtx'               : '1.2.0-rc01',
-            'gradle'                : '3.5.2',
+            'gradle'                : '3.5.3',
             'lifecycle'             : '2.2.0-rc03',
             'room'                  : '2.2.0-beta01',
             'constraintLayout'      : '1.1.3',
