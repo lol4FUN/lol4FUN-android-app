@@ -15,7 +15,7 @@
     <fragment
         app:moduleName="champions"
         android:id="@+id/championsFragment"
-        android:name="com.github.champions.ChampionsFragment"
+        android:name="com.github.champions.feature.view.ChampionsFragment"
         android:label="ChampionsFragment"/>
 
     <fragment
