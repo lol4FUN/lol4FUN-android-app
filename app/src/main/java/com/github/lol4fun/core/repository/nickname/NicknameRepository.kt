@@ -21,7 +21,7 @@ class NicknameRepository : BaseRepository() {
 
     suspend fun getSummonerNameByNameAtRiotApi(summonerName: String): Resource {
         return safeApiCall(
-            call = { api.getSummonerNameByNameAsync(summonerName).await() }
+            call = { api.getSummonerNameByNameAsync(summonerName) }
         )
     }
 
