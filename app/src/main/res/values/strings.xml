@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">LoL4FUN</string>
-
-
     <string name="home">Home</string>
     <string name="champions">Champions</string>
     <string name="profile">Profile</string>
     <string name="search">Search</string>
+
+    <string name="facebook_application_id" translatable="false">592673608148318</string>
+    <!-- Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs. -->
+    <string name="facebook_login_protocol_scheme" translatable="false">fb592673608148318</string>
+
+    <string name="sign_in_canceled_by_user">Login cancelado pelo usuário</string>
+    <string name="hint_nickname">Digite seu nome de invocador</string>
+    <string name="nickname_continue_button">Salvar</string>
+    <string name="nickname_error_blank_or_invalid">O nome do invocador é vazio ou inválido</string>
+    <string name="nickname_success_save_summoner_infos">Informações do invocador salvas com sucesso</string>
+
+    <string name="error_merge_anonymous_account">Error ao linkar sua conta anônima, por favor, tente novamente.</string>
+    <string name="error_email_mismatch">Erro, você está tentando logar com um email diferente do informado ao criar a conta.</string>
+    <string name="error_user_disabled">Sua conta foi suspensa pelo administrador.</string>
+    <string name="main_sign_in_anonynous">Você entrou como convidado.</string>
 </resources>
