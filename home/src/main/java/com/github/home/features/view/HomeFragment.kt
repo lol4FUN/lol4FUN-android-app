@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.home.R
 import com.github.home.features.viewmodel.HomeViewModel
+import com.github.lol4fun.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: Fragment() {
@@ -36,6 +37,10 @@ class HomeFragment: Fragment() {
         viewModel.spinner.observe(viewLifecycleOwner, Observer {
             val visibility = if (it) View.VISIBLE else View.GONE
             pbHome.visibility = visibility
+        })
+
+        viewModel.alertMessage.observe(viewLifecycleOwner, Observer {
+            activity?.showToast(it)
         })
     }
 }

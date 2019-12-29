@@ -4,5 +4,5 @@ interface HomeBusinessListener {
 
     fun onSuccessFetchHistory()
 
-    fun onErrorFetchHistory()
+    fun onErrorFetchHistory(error: String?)
 }

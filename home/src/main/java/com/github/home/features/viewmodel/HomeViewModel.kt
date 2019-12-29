@@ -8,11 +8,14 @@ import com.github.lol4fun.base.BaseViewModel
 
 class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
+    private var _alertMessage = MutableLiveData<String>()
 
     private val business: HomeBusiness by lazy { HomeBusiness(this) }
 
     val spinner: LiveData<Boolean>
         get() = _spinner
+    val alertMessage: LiveData<String>
+        get() = _alertMessage
 
 
     fun fetchPlayerHistory() {
@@ -25,7 +28,9 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onErrorFetchHistory() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onErrorFetchHistory(error: String?) {
+        error?.let {
+            _alertMessage.value = it
+        }
     }
 }
