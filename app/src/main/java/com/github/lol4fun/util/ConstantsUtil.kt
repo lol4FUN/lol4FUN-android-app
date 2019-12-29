@@ -28,6 +28,7 @@ class ConstantsUtil {
     object Api {
         //todo modularizar com link para regiao do usuário, hoje está apenas para o BR
         const val BASE_URL = "https://br1.api.riotgames.com/lol/"
+        const val BASE_URL_DDRAGON = "http://ddragon.leagueoflegends.com/cdn/"
         const val HEADER_RIOT_TOKEN_NAME = "X-Riot-Token"
         const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-529915a1-9d95-4145-86ad-85ba26d90968"
     }
