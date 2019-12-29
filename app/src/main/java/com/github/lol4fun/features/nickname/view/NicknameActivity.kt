@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.github.lol4fun.R
+import com.github.lol4fun.extensions.hideKeyboard
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.features.nickname.viewmodel.NicknameViewModel
@@ -58,6 +59,7 @@ class NicknameActivity : AppCompatActivity() {
     private fun setupView() {
         mbNicknameContinue.setOnClickListener {
             pbNicknameLoading.visibility = View.VISIBLE
+            hideKeyboard(tilNicknameSummonerName)
             viewModel.verifySummonerNameAndSave(tilNicknameSummonerName.editText?.text.toString())
         }
     }
