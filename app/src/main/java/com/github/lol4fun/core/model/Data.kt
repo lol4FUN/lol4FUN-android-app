@@ -1,6 +1,6 @@
-package com.github.champions.model
+package com.github.lol4fun.core.model
 
-import com.github.lol4fun.core.model.Aatrox
+import com.github.champions.model.*
 
 data class Data(
     val Aatrox: Aatrox,

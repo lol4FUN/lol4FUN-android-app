@@ -43,7 +43,7 @@ class ChampionsFragment: Fragment() {
         })
 
         viewModel.onSuccessGetChampionsListLiveData.observe(viewLifecycleOwner, Observer {
-            it?.let { champions ->
+            it?.let { championsMap ->
                 pbChampionsLoading.visibility = View.GONE
             }
         })

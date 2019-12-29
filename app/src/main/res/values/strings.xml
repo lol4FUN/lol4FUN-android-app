@@ -10,7 +10,8 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fb592673608148318</string>
 
     <string name="sign_in_canceled_by_user">Login cancelado pelo usuário</string>
-    <string name="hint_nickname">Digite seu nome de invocador</string>
+    <string name="hint_nickname">Invocador</string>
+    <string name="placeholder_nickname">Digite seu nome de invocador</string>
     <string name="nickname_continue_button">Salvar</string>
     <string name="nickname_error_blank_or_invalid">O nome do invocador é vazio ou inválido</string>
     <string name="nickname_success_save_summoner_infos">Informações do invocador salvas com sucesso</string>

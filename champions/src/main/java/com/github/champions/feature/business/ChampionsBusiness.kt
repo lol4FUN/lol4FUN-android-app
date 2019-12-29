@@ -5,6 +5,7 @@ import com.github.champions.feature.listener.ChampionsListener
 import com.github.champions.repository.ChampionsRepository
 import com.github.lol4fun.core.api.Status
 import com.github.lol4fun.core.model.Champions
+import com.github.lol4fun.extensions.serializeToMap
 
 class ChampionsBusiness(
     private val championsListener: ChampionsListener
@@ -20,7 +21,9 @@ class ChampionsBusiness(
                 championsListener.onErrorGetChampionsList(R.string.error_get_champions_list)
             }
             Status.SUCCESS -> {
-                championsListener.onSuccessGetChampionsList(resultGetChampions.data as? Champions)
+                val championsMap = (resultGetChampions.data as? Champions)?.data.serializeToMap()
+
+                championsListener.onSuccessGetChampionsList(championsMap)
             }
         }
     }
