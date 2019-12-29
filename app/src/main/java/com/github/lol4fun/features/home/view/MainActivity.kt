@@ -12,7 +12,9 @@ import android.app.Activity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.github.lol4fun.extensions.showSnackBar
+import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.features.nickname.view.NicknameActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,10 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkIfUserIsLogged() {
-        if (mainViewModel.userIsLogged()) {
-            // already signed in
-            //TODO tela principal
-        } else {
+        if (!mainViewModel.userIsLogged()) {
             startLoginActivity()
         }
     }
@@ -69,8 +68,12 @@ class MainActivity : AppCompatActivity() {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-                    //todo pode forcar como convidado, para o usuario ficar no app
-                    finish()
+                    FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            mainViewModel.saveUserFirestore()
+                        }
+                    }
+                    showToast(getString(R.string.main_sign_in_anonynous))
                     return
                 }
 
