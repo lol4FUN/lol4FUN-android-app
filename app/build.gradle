@@ -65,9 +65,9 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     //http
-    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
-    implementation "com.google.code.gson:gson:${versions.gson}"
+    api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    api "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    api "com.google.code.gson:gson:${versions.gson}"
 
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
