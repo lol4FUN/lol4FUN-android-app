@@ -5,13 +5,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Customer (
-    var name: String? = null,
-    var email: String? = null,
-    var summonerName: String? = null,
-    var accountId: String? = null,
-    var id: String? = null,
-    var premiumUser: Boolean? = null,
-    var profilePicture: String? = null,
-    var colorPreference: Long? = null,
-    var profileIconId: Long? = null
+    val name: String? = null,
+    val email: String? = null,
+    val summonerName: String? = null,
+    val accountId: String? = null,
+    val id: String? = null,
+    val premiumUser: Boolean? = null,
+    val profilePicture: String? = null,
+    val colorPreference: Long? = null,
+    val profileIconId: Long? = null
 ): Parcelable
