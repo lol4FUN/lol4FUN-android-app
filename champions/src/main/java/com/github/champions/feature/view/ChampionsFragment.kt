@@ -1,6 +1,7 @@
 package com.github.champions.feature.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,13 +37,14 @@ class ChampionsFragment: Fragment() {
     private fun setupObservables() {
         viewModel.onErrorGetChampionsListLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
+                pbChampionsLoading.visibility = View.GONE
                 this.context?.showSnackBar(pbChampionsLoading, it)
             }
         })
 
         viewModel.onSuccessGetChampionsListLiveData.observe(viewLifecycleOwner, Observer {
             it?.let { champions ->
-                champions.data.Aatrox.name
+                pbChampionsLoading.visibility = View.GONE
             }
         })
     }
