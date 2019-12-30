@@ -1,5 +1,6 @@
 package com.github.lol4fun.extensions
 
+import com.github.lol4fun.core.model.Champion
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -12,6 +13,10 @@ fun <T> T.serializeToMap(): Map<String, Any> {
 
 //convert a map to a data class
 inline fun <reified T> Map<String, Any>.toDataClass(): T {
+    return convert()
+}
+
+fun <T> T.toChampionObject(): Champion {
     return convert()
 }
 
