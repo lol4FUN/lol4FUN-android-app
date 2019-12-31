@@ -16,7 +16,7 @@ inline fun <reified T> Map<String, Any>.toDataClass(): T {
     return convert()
 }
 
-fun <T> T.toChampionObject(): Champion {
+fun <T> T.toChampionGenericObject(): Champion {
     return convert()
 }
 

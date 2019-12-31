@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.champions.R
-import com.github.lol4fun.extensions.toChampionObject
+import com.github.lol4fun.extensions.toChampionGenericObject
 import kotlinx.android.synthetic.main.item_champion.view.*
 
 class ChampionsAdapter(
@@ -29,8 +29,8 @@ class ChampionsAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(context: Context?, any: Any?) = with(itemView) {
-            val champion = any.toChampionObject()
+        fun bind(context: Context?, anyChampion: Any?) = with(itemView) {
+            val champion = anyChampion.toChampionGenericObject()
             itemView.rvChampionItemName.text = champion.name
         }
     }
