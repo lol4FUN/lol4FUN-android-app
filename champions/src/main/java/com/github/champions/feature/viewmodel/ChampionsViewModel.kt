@@ -14,7 +14,7 @@ class ChampionsViewModel : ViewModel(), ChampionsListener {
     private val business: ChampionsBusiness by lazy { ChampionsBusiness(this) }
 
     val onErrorGetChampionsListLiveData: MutableLiveData<Int> = MutableLiveData()
-    val onSuccessGetChampionsListLiveData: MutableLiveData<Map<String, Any>> = MutableLiveData()
+    val onSuccessGetChampionsListLiveData: MutableLiveData<ArrayList<Any>> = MutableLiveData()
 
     fun getChampions() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -26,7 +26,7 @@ class ChampionsViewModel : ViewModel(), ChampionsListener {
         onErrorGetChampionsListLiveData.postValue(resourceId)
     }
 
-    override fun onSuccessGetChampionsList(championsMap: Map<String, Any>?) {
-        onSuccessGetChampionsListLiveData.postValue(championsMap)
+    override fun onSuccessGetChampionsList(championsList: ArrayList<Any>?) {
+        onSuccessGetChampionsListLiveData.postValue(championsList)
     }
 }
