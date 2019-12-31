@@ -8,8 +8,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChampions"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/pbChampionsLoading"
