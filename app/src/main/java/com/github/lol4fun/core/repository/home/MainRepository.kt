@@ -1,7 +1,7 @@
 package com.github.lol4fun.core.repository.home
 
 import com.github.lol4fun.core.model.Customer
-import com.github.lol4fun.core.repository.BaseRepository
+import com.github.lol4fun.base.BaseRepository
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_DARK
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_EMAIL

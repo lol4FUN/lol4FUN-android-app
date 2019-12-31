@@ -16,10 +16,11 @@ import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.features.nickname.view.NicknameActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by lazy { MainViewModel() }
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

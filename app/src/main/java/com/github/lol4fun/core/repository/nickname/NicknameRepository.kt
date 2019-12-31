@@ -2,7 +2,7 @@ package com.github.lol4fun.core.repository.nickname
 
 import com.github.lol4fun.core.api.Resource
 import com.github.lol4fun.core.model.SummonerInfo
-import com.github.lol4fun.core.repository.BaseRepository
+import com.github.lol4fun.base.BaseRepository
 import com.github.lol4fun.util.ConstantsUtil
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_REGION
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_REGION_BR

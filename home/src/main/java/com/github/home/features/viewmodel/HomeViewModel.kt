@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.github.home.features.business.HomeBusiness
 import com.github.home.features.business.HomeBusinessListener
 import com.github.lol4fun.base.BaseViewModel
+import org.koin.core.inject
+import org.koin.core.parameter.parametersOf
 
 class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
     private var _alertMessage = MutableLiveData<String>()
 
-    private val business: HomeBusiness by lazy { HomeBusiness(this) }
+    private val business: HomeBusiness by inject { parametersOf(this) }
 
     val spinner: LiveData<Boolean>
         get() = _spinner

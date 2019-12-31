@@ -10,10 +10,11 @@ import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.features.nickname.viewmodel.NicknameViewModel
 import kotlinx.android.synthetic.main.activity_nickname.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NicknameActivity : AppCompatActivity() {
 
-    private val viewModel: NicknameViewModel by lazy { NicknameViewModel() }
+    private val viewModel: NicknameViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

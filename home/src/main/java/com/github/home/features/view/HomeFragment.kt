@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.github.home.R
+import com.github.home.di.HomeDependencyInjection
 import com.github.home.features.viewmodel.HomeViewModel
 import com.github.lol4fun.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by lazy {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
+    private val viewModel: HomeViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        HomeDependencyInjection.injectModules()
     }
 
     override fun onCreateView(
