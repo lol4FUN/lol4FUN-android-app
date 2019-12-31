@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.champions.R
 import com.github.champions.adapter.ChampionsAdapter
 import com.github.champions.feature.viewmodel.ChampionsViewModel
 import com.github.lol4fun.extensions.showSnackBar
+import com.github.lol4fun.util.ConstantsUtil.Champions.NUMBER_OF_COLUMNS_GRID_CHAMPIONS
 import kotlinx.android.synthetic.main.fragment_champions.*
 
 class ChampionsFragment: Fragment() {
@@ -58,7 +60,7 @@ class ChampionsFragment: Fragment() {
     }
 
     private fun setupRecyclerView(context: Context?, championsList: ArrayList<Any>) {
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = GridLayoutManager(context, NUMBER_OF_COLUMNS_GRID_CHAMPIONS)
         rvChampions.layoutManager = layoutManager
         championsAdapter = ChampionsAdapter(context, championsList)
         rvChampions.adapter = championsAdapter

@@ -38,4 +38,8 @@ class ConstantsUtil {
         const val ERROR_BAD_REQUEST = "Erro na chamada, por favor, contate o administrador"
         const val ERROR_UNAUTHORIZED = "Chamada não autorizada, por favor, contate o administrador"
     }
+
+    object Champions {
+        const val NUMBER_OF_COLUMNS_GRID_CHAMPIONS = 4
+    }
 }
