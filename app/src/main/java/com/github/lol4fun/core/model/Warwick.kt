@@ -1,4 +1,4 @@
-package com.github.champions.model
+package com.github.lol4fun.core.model
 
 data class Warwick(
     val blurb: String,
@@ -6,6 +6,7 @@ data class Warwick(
     val key: String,
     val name: String,
     val partype: String,
+    val image: Image,
     val tags: List<String>,
     val title: String,
     val version: String
