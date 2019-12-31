@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.champions.R
 import com.github.lol4fun.extensions.toChampionGenericObject
+import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
+import com.github.lol4fun.util.GlideApp
 import kotlinx.android.synthetic.main.item_champion.view.*
 
 class ChampionsAdapter(
@@ -31,6 +33,12 @@ class ChampionsAdapter(
 
         fun bind(context: Context?, anyChampion: Any?) = with(itemView) {
             val champion = anyChampion.toChampionGenericObject()
+            context?.let {
+                GlideApp
+                    .with(it)
+                    .load("$BASE_URL_SQUARE_ASSET${champion.image?.full}")
+                    .into(itemView.rvChampionItemAvatar)
+            }
             itemView.rvChampionItemName.text = champion.name
         }
     }
