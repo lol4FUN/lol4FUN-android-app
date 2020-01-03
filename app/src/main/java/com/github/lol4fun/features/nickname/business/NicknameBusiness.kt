@@ -1,16 +1,18 @@
 package com.github.lol4fun.features.nickname.business
 
 import com.github.lol4fun.core.api.Status
+import com.github.lol4fun.core.base.BaseBusiness
 import com.github.lol4fun.core.model.SummonerInfo
 import com.github.lol4fun.core.repository.nickname.NicknameRepository
 import com.github.lol4fun.features.nickname.listener.NicknameListener
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_DEFAULT
+import org.koin.core.inject
 
 class NicknameBusiness(
-    var nicknameListener: NicknameListener
-) {
+    private val nicknameListener: NicknameListener
+) : BaseBusiness() {
 
-    private val nicknameRepository = NicknameRepository()
+    private val nicknameRepository: NicknameRepository by inject()
 
     fun isSummonerInvalid(summonerName: String): Boolean {
         return summonerName.isBlank()
@@ -31,7 +33,7 @@ class NicknameBusiness(
                 summonerInfo?.let {
                     val resultFirestore = nicknameRepository.saveSummonerInfoAtFirestore(it)
 
-                    when(resultFirestore.status) {
+                    when (resultFirestore.status) {
                         Status.SUCCESS -> {
                             nicknameListener.onSuccessSaveSummonerInfo()
                         }
