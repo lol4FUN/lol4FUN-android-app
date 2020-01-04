@@ -1,11 +1,10 @@
-package com.github.champions.feature.viewmodel
+package com.github.champions.features.champions.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.champions.feature.business.ChampionsBusiness
-import com.github.champions.feature.listener.ChampionsListener
-import com.github.lol4fun.core.model.Champions
+import com.github.champions.features.champions.business.ChampionsBusiness
+import com.github.champions.features.champions.listener.ChampionsListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

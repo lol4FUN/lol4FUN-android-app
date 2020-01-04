@@ -1,4 +1,4 @@
-package com.github.champions.feature.listener
+package com.github.champions.features.champions.listener
 
 interface ChampionsListener {
 

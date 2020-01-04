@@ -1,10 +1,9 @@
-package com.github.champions.feature.business
+package com.github.champions.features.champions.business
 
 import com.github.champions.R
-import com.github.champions.feature.listener.ChampionsListener
+import com.github.champions.features.champions.listener.ChampionsListener
 import com.github.champions.repository.ChampionsRepository
 import com.github.lol4fun.core.api.Status
-import com.github.lol4fun.core.model.Champion
 import com.github.lol4fun.core.model.Champions
 import com.github.lol4fun.extensions.serializeToMap
 

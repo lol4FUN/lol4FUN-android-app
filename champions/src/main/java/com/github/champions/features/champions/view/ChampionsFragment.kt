@@ -1,4 +1,4 @@
-package com.github.champions.feature.view
+package com.github.champions.features.champions.view
 
 import android.content.Context
 import android.os.Bundle
@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.champions.R
 import com.github.champions.adapter.ChampionsAdapter
-import com.github.champions.feature.viewmodel.ChampionsViewModel
+import com.github.champions.features.champions.viewmodel.ChampionsViewModel
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.util.ConstantsUtil.Champions.NUMBER_OF_COLUMNS_GRID_CHAMPIONS
 import kotlinx.android.synthetic.main.fragment_champions.*
