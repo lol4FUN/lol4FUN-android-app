@@ -24,6 +24,7 @@ buildscript {
             'firebaseUIAuth'        : '6.2.0',
             'firebaseFirestore'     : '21.3.1',
             'firebaseAuth'          : '19.2.0',
+            'circleImageView'       : '3.0.1',
             'navigation'            : '2.3.0-SNAPSHOT'
     ]
 
