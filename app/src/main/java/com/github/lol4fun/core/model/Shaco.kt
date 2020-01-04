@@ -1,5 +1,9 @@
 package com.github.lol4fun.core.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Shaco(
     val blurb: String,
     val id: String,
@@ -10,4 +14,4 @@ data class Shaco(
     val tags: List<String>,
     val title: String,
     val version: String
-)
+): Parcelable

@@ -1,7 +1,9 @@
 package com.github.lol4fun.core.model
 
-import com.github.champions.model.*
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Data(
     val Aatrox: Aatrox,
     val Ahri: Ahri,
@@ -150,4 +152,4 @@ data class Data(
     val Zilean: Zilean,
     val Zoe: Zoe,
     val Zyra: Zyra
-)
+): Parcelable
