@@ -1,4 +1,4 @@
-package com.github.lol4fun.base
+package com.github.lol4fun.core.base
 
 import com.github.lol4fun.core.api.ApiService
 import com.github.lol4fun.core.api.Resource

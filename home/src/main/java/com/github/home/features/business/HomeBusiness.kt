@@ -1,7 +1,7 @@
 package com.github.home.features.business
 
 import com.github.home.repository.HomeRepository
-import com.github.lol4fun.base.BaseBusiness
+import com.github.lol4fun.core.base.BaseBusiness
 import org.koin.core.inject
 
 

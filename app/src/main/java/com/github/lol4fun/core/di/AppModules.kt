@@ -1,9 +1,9 @@
-package com.github.lol4fun.di
+package com.github.lol4fun.core.di
 
-import com.github.lol4fun.core.repository.home.MainRepository
+import com.github.lol4fun.core.repository.main.MainRepository
 import com.github.lol4fun.core.repository.nickname.NicknameRepository
-import com.github.lol4fun.features.home.business.MainBusiness
-import com.github.lol4fun.features.home.viewmodel.MainViewModel
+import com.github.lol4fun.features.main.business.MainBusiness
+import com.github.lol4fun.features.main.viewmodel.MainViewModel
 import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import com.github.lol4fun.features.nickname.listener.NicknameListener
 import com.github.lol4fun.features.nickname.viewmodel.NicknameViewModel

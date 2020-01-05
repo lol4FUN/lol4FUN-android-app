@@ -1,7 +1,7 @@
 package com.github.lol4fun.features.nickname.business
 
-import com.github.lol4fun.base.BaseBusiness
 import com.github.lol4fun.core.api.Status
+import com.github.lol4fun.core.base.BaseBusiness
 import com.github.lol4fun.core.model.SummonerInfo
 import com.github.lol4fun.core.repository.nickname.NicknameRepository
 import com.github.lol4fun.features.nickname.listener.NicknameListener

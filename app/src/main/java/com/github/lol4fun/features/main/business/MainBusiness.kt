@@ -1,14 +1,14 @@
-package com.github.lol4fun.features.home.business
+package com.github.lol4fun.features.main.business
 
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes.*
 import com.github.lol4fun.R
-import com.github.lol4fun.base.BaseBusiness
-import com.github.lol4fun.core.repository.home.MainRepository
+import com.github.lol4fun.core.base.BaseBusiness
+import com.github.lol4fun.core.repository.main.MainRepository
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.core.inject
 
-class MainBusiness : BaseBusiness() {
+class MainBusiness: BaseBusiness() {
 
     private val auth = FirebaseAuth.getInstance()
     private val mainRepository: MainRepository by inject()
@@ -31,7 +31,7 @@ class MainBusiness : BaseBusiness() {
     }
 
     fun getErrorLogin(errorCode: Int?): Int {
-        return when (errorCode) {
+        return when(errorCode) {
             UNKNOWN_ERROR -> R.string.fui_error_unknown
             NO_NETWORK -> R.string.fui_no_internet
             ANONYMOUS_UPGRADE_MERGE_CONFLICT -> R.string.error_merge_anonymous_account

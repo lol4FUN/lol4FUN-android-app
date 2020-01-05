@@ -1,4 +1,4 @@
-package com.github.lol4fun.base
+package com.github.lol4fun.core.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

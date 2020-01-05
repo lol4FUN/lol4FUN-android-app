@@ -1,10 +1,9 @@
 package com.github.lol4fun.features.nickname.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.lol4fun.R
-import com.github.lol4fun.base.BaseViewModel
+import com.github.lol4fun.core.base.BaseViewModel
 import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import com.github.lol4fun.features.nickname.listener.NicknameListener
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ import org.koin.core.parameter.parametersOf
 class NicknameViewModel : BaseViewModel(), NicknameListener {
 
     private val business: NicknameBusiness by inject { parametersOf(this) }
-    
+
     val onErrorSummonerNameLiveData: MutableLiveData<Int> = MutableLiveData()
     val onErrorGetSummonerNameApiLiveData: MutableLiveData<String> = MutableLiveData()
     val onErrorSaveSummonerInfoFirestoreLiveData: MutableLiveData<String> = MutableLiveData()

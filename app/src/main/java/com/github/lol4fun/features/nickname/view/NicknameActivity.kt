@@ -1,8 +1,8 @@
 package com.github.lol4fun.features.nickname.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.lol4fun.R
 import com.github.lol4fun.extensions.hideKeyboard

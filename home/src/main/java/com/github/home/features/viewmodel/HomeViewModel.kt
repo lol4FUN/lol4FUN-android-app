@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.github.home.features.business.HomeBusiness
 import com.github.home.features.business.HomeBusinessListener
-import com.github.lol4fun.base.BaseViewModel
+import com.github.lol4fun.core.base.BaseViewModel
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 
