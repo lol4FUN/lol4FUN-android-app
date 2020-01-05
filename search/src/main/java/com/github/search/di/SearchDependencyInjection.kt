@@ -3,9 +3,9 @@ package com.github.search.di
 import org.koin.core.context.loadKoinModules
 
 object SearchDependencyInjection {
-    private val loadHomeModules by lazy {
+    private val loadSearchModules by lazy {
         loadKoinModules(listOf(businessModule, repositoryModule, viewModelModule))
     }
 
-    fun injectModules() = loadHomeModules
+    fun injectModules() = loadSearchModules
 }
