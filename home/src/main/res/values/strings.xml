@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="header_home">Últimas partidas</string>
+    <string name="current_match">Partida atual</string>
+    <string name="position">position</string>
+</resources>
