@@ -29,7 +29,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name="com.github.lol4fun.features.home.view.MainActivity"
+            android:name="com.github.lol4fun.features.main.view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>

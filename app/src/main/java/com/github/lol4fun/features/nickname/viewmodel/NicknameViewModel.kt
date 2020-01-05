@@ -1,18 +1,20 @@
 package com.github.lol4fun.features.nickname.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.lol4fun.R
+import com.github.lol4fun.core.base.BaseViewModel
 import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import com.github.lol4fun.features.nickname.listener.NicknameListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.core.inject
+import org.koin.core.parameter.parametersOf
 
-class NicknameViewModel : ViewModel(), NicknameListener {
+class NicknameViewModel : BaseViewModel(), NicknameListener {
 
-    private val business: NicknameBusiness by lazy { NicknameBusiness(this) }
-    
+    private val business: NicknameBusiness by inject { parametersOf(this) }
+
     val onErrorSummonerNameLiveData: MutableLiveData<Int> = MutableLiveData()
     val onErrorGetSummonerNameApiLiveData: MutableLiveData<String> = MutableLiveData()
     val onErrorSaveSummonerInfoFirestoreLiveData: MutableLiveData<String> = MutableLiveData()

@@ -25,7 +25,8 @@ buildscript {
             'firebaseFirestore'     : '21.3.1',
             'firebaseAuth'          : '19.2.0',
             'circleImageView'       : '3.0.1',
-            'navigation'            : '2.3.0-SNAPSHOT'
+            'navigation'            : '2.3.0-SNAPSHOT',
+            'koin'                  : '2.0.1'
     ]
 
     repositories {

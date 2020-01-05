@@ -90,6 +90,10 @@ dependencies {
 //    api "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
     api "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+
+    //Dependency injection
+    api "org.koin:koin-android:${versions.koin}"
+    api "org.koin:koin-androidx-viewmodel:${versions.koin}"
 }
 
 apply plugin: 'com.google.gms.google-services'

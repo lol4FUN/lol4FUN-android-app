@@ -1,15 +1,17 @@
-package com.github.lol4fun.features.home.business
+package com.github.lol4fun.features.main.business
 
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes.*
 import com.github.lol4fun.R
-import com.github.lol4fun.core.repository.home.MainRepository
+import com.github.lol4fun.core.base.BaseBusiness
+import com.github.lol4fun.core.repository.main.MainRepository
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.core.inject
 
-class MainBusiness {
+class MainBusiness: BaseBusiness() {
 
     private val auth = FirebaseAuth.getInstance()
-    private val mainRepository = MainRepository()
+    private val mainRepository: MainRepository by inject()
 
     fun userIsLogged(): Boolean {
         return auth.currentUser != null

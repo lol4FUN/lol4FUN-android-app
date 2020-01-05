@@ -1,12 +1,13 @@
-package com.github.lol4fun.features.home.viewmodel
+package com.github.lol4fun.features.main.viewmodel
 
-import androidx.lifecycle.ViewModel
 import com.firebase.ui.auth.AuthUI
-import com.github.lol4fun.features.home.business.MainBusiness
+import com.github.lol4fun.core.base.BaseViewModel
+import com.github.lol4fun.features.main.business.MainBusiness
+import org.koin.core.inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
 
-    private val mainBusiness: MainBusiness by lazy { MainBusiness() }
+    private val mainBusiness: MainBusiness by inject()
 
     fun userIsLogged(): Boolean {
         return mainBusiness.userIsLogged()
