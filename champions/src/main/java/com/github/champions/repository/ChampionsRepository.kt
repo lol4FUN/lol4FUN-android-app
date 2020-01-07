@@ -10,6 +10,4 @@ class ChampionsRepository : BaseRepository() {
             call = { apiDDragon.getChampionsAsync() }
         )
     }
-
-
 }
