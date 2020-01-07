@@ -7,18 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.champions.R
 import com.github.champions.adapter.ChampionsAdapter
+import com.github.champions.di.ChampionsDependencyInjection
 import com.github.champions.features.champions.viewmodel.ChampionsViewModel
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.util.ConstantsUtil.Champions.NUMBER_OF_COLUMNS_GRID_CHAMPIONS
 import kotlinx.android.synthetic.main.fragment_champions.*
+import org.koin.android.ext.android.inject
 
 class ChampionsFragment: Fragment() {
 
-    private lateinit var viewModel: ChampionsViewModel
+    private val viewModel: ChampionsViewModel by inject()
 
     private lateinit var championsAdapter: ChampionsAdapter
 
@@ -27,6 +28,8 @@ class ChampionsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        ChampionsDependencyInjection.injectModules()
+
         return inflater.inflate(R.layout.fragment_champions, container, false)
     }
 
@@ -35,8 +38,6 @@ class ChampionsFragment: Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(ChampionsViewModel::class.java)
 
         viewModel.getChampions()
         setupObservables()
