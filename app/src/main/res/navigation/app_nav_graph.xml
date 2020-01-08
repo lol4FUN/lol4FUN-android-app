@@ -21,7 +21,7 @@
     <fragment
         app:moduleName="profile"
         android:id="@+id/profileFragment"
-        android:name="com.github.profile.ProfileFragment"
+        android:name="com.github.profile.feature.view.ProfileFragment"
         android:label="ProfileFragment"/>
 
     <fragment
