@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="xxxlargeMargin">60dp</dimen>
+    <dimen name="xxlargeMargin">36dp</dimen>
+    <dimen name="xlargeMargin">32dp</dimen>
+    <dimen name="largeMargin">24dp</dimen>
+    <dimen name="defaultMargin">16dp</dimen>
+    <dimen name="xdefaultMargin">12dp</dimen>
+    <dimen name="minimumMargin">8dp</dimen>
+    <dimen name="xminimumMargin">4dp</dimen>
+
+    <dimen name="default_title_size">28sp</dimen>
+    <dimen name="default_subtitle_size">14sp</dimen>
+
+    <dimen name="default_size_champion_avatar">40dp</dimen>
+</resources>

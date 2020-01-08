@@ -1,6 +1,7 @@
 package com.github.lol4fun.core.base
 
 import com.github.lol4fun.core.api.ApiService
+import com.github.lol4fun.core.api.DDragonRiotApi
 import com.github.lol4fun.core.api.Resource
 import com.github.lol4fun.core.api.RiotApi
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_DEFAULT
@@ -13,6 +14,7 @@ import java.lang.Exception
 open class BaseRepository {
 
     val api : RiotApi = ApiService.riotApi
+    val apiDDragon: DDragonRiotApi = ApiService.dDragonRiotApi
     val db = FirebaseFirestore.getInstance()
     val auth = FirebaseAuth.getInstance()
 
