@@ -1,4 +1,4 @@
-package com.github.home.features.business
+package com.github.home.features.home.business
 
 interface HomeBusinessListener {
 

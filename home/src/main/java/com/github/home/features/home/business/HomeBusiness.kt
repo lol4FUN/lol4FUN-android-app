@@ -1,4 +1,4 @@
-package com.github.home.features.business
+package com.github.home.features.home.business
 
 import com.github.home.repository.HomeRepository
 import com.github.lol4fun.core.base.BaseBusiness
