@@ -93,9 +93,6 @@ dependencies {
     //Dependency injection
     api "org.koin:koin-android:${versions.koin}"
     api "org.koin:koin-androidx-viewmodel:${versions.koin}"
-
-    //CircleImageView
-    api "de.hdodenhof:circleimageview:${versions.circleImageView}"
 }
 
 apply plugin: 'com.google.gms.google-services'
