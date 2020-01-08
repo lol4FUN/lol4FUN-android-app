@@ -1,61 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="@dimen/minimumMargin"
+    android:id="@+id/srlHome">
 
-    <ProgressBar
-        android:id="@+id/pbHome"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerHome"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btHomeActualMatch"
+            style="@style/DefaultButtonTheme"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:cardCornerRadius="@dimen/default_radius"
+            app:layout_constraintEnd_toEndOf="@id/containerHome"
+            app:layout_constraintStart_toStartOf="@id/containerHome"
+            app:layout_constraintTop_toTopOf="@id/containerHome">
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvTitleList"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_title_size"
+            android:text="@string/header_home"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btHomeActualMatch" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistoryMatches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btHomeActualMatch"
-                style="@style/DefaultButtonTheme"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:text="@string/current_match"
-                app:layout_constraintEnd_toEndOf="@id/containerHome"
-                app:layout_constraintStart_toStartOf="@id/containerHome"
-                app:layout_constraintTop_toTopOf="@id/containerHome" />
-
-            <TextView
-                android:id="@+id/tvTitleList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                style="@style/HeaderText"
-                android:text="@string/header_home"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btHomeActualMatch" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHistoryMatches"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitleList"
-                tools:listitem="@layout/adapter_home"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="@dimen/defaultMargin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleList"
+            tools:listitem="@layout/adapter_home" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

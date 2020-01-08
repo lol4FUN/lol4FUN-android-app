@@ -41,7 +41,6 @@ class HomeFragment : Fragment() {
     private fun setupObservables() {
         viewModel.spinner.observe(viewLifecycleOwner, Observer {
             val visibility = if (it) View.VISIBLE else View.GONE
-            pbHome.visibility = visibility
         })
 
         viewModel.alertMessage.observe(viewLifecycleOwner, Observer {
