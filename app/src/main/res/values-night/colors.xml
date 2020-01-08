@@ -12,4 +12,6 @@
     <color name="colorBackgroundText">#0dffffff</color>
 
     <color name="colorNormal">#fafafa</color>
+
+    <color name="colorItemNameChampion">#FFFFFF</color>
 </resources>

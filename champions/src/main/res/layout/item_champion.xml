@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contentLayout">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rvChampionItemAvatar"
+        android:layout_width="@dimen/default_size_champion_avatar"
+        android:layout_height="@dimen/default_size_champion_avatar"
+        android:layout_marginTop="@dimen/minimumMargin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/rvChampionItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/default_subtitle_size"
+        android:textColor="@color/colorItemNameChampion"
+        android:layout_marginTop="@dimen/minimumMargin"
+        android:layout_marginBottom="@dimen/minimumMargin"
+        app:layout_constraintTop_toBottomOf="@+id/rvChampionItemAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Alice Romero" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
