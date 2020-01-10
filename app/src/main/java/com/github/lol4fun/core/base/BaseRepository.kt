@@ -4,8 +4,11 @@ import com.github.lol4fun.core.api.ApiService
 import com.github.lol4fun.core.api.DDragonRiotApi
 import com.github.lol4fun.core.api.Resource
 import com.github.lol4fun.core.api.RiotApi
+import com.github.lol4fun.core.model.Customer
+import com.github.lol4fun.util.ConstantsUtil
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_DEFAULT
 import com.github.lol4fun.util.ErrorUtils
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Response
@@ -40,5 +43,15 @@ open class BaseRepository {
         } catch (error : Exception) {
             return Resource.error(ERROR_DEFAULT)
         }
+    }
+
+    fun getUserFirestore(): Customer? {
+        val docRef = FirebaseFirestore.getInstance()
+            .collection(ConstantsUtil.FirestoreDataBaseNames.DATABASE_CUSTOMERS)
+            .document(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+
+        val result = Tasks.await(docRef.get())
+
+        return result.toObject(Customer::class.java)
     }
 }
