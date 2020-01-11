@@ -17,8 +17,7 @@ import org.koin.core.parameter.parametersOf
 class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
     private var _alertMessage = MutableLiveData<String>()
-    private var _history = MutableLiveData<MatchList>()
-    private var _detailMatch = MutableLiveData<Match>()
+    private var _history = MutableLiveData<List<Match>>()
 
     private val business: HomeBusiness by inject { parametersOf(this) }
 
@@ -26,13 +25,12 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         get() = _spinner
     val alertMessage: LiveData<String>
         get() = _alertMessage
-    val history: LiveData<MatchList>
+    val history: LiveData<List<Match>>
         get() = _history
-    val detailMatch: LiveData<Match>
-        get() = _detailMatch
 
 
     fun fetchHomeData() {
+        _history.value = null
         _spinner.value = true
         viewModelScope.launch (coroutineContext.IO) {
             val callOne = async { business.getActualMatch() }
@@ -49,7 +47,6 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     }
 
     override fun onSuccessFetchHistory(matches: MatchList) {
-        _history.postValue(matches)
         loadDataParallel(matches.matches) {
             val match = it as MatchReference
             business.getDetailMatch(match.gameId)
@@ -57,7 +54,10 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     }
 
     override fun onSuccessDetailMatch(match: Match) {
-        _detailMatch.value = match
+        val list = mutableListOf<Match>()
+        list.addAll(_history.value ?: emptyList())
+        list.add(match)
+        _history.value = list
     }
 
     override fun onDefaultError(error: String?) {

@@ -11,11 +11,11 @@ import com.github.lol4fun.core.model.Match
 class HomeAdapter(
     private val context: Context?
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-    private val historyList = mutableListOf<Match>()
-    private lateinit var clickListener: ItemClickListener
+    private var historyList = listOf<Match>()
+    private lateinit var clickListener: ItemClickListener<Match>
 
 
-    fun setOnClickListener(cl: ItemClickListener) {
+    fun setOnClickListener(cl: ItemClickListener<Match>) {
         clickListener = cl
     }
 
@@ -30,12 +30,17 @@ class HomeAdapter(
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(context, historyList[position])
         holder.itemView.setOnClickListener {
-            clickListener.onItemClicked(position, it)
+            clickListener.onItemClicked(historyList[position])
         }
     }
 
-    fun addData(data: List<Match>) {
-        historyList.addAll(data)
+    fun clearData() {
+        historyList = emptyList()
+        notifyDataSetChanged()
+    }
+
+    fun updateData(data: List<Match>) {
+        historyList = data
         notifyDataSetChanged()
     }
 

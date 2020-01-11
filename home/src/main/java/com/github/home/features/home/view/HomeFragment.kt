@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.home.R
+import com.github.home.adapter.HomeAdapter
+import com.github.home.adapter.ItemClickListener
 import com.github.home.di.HomeDependencyInjection
 import com.github.home.features.home.viewmodel.HomeViewModel
-import com.github.lol4fun.core.model.MatchList
+import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,6 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModel()
+    private lateinit var adapter: HomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,7 @@ class HomeFragment : Fragment() {
         viewModel.fetchHomeData()
         setupObservables()
         setupListeners()
+        setupRecyclerView()
     }
 
     private fun setupObservables() {
@@ -50,21 +55,28 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.history.observe(viewLifecycleOwner, Observer {
-            setupRecyclerView(it)
-        })
-
-        viewModel.detailMatch.observe(viewLifecycleOwner, Observer {
-
+            it?.let {
+                adapter.updateData(it)
+            }
         })
     }
 
     private fun setupListeners() {
         srlHome.setOnRefreshListener {
             viewModel.fetchHomeData()
+            adapter.clearData()
         }
     }
 
-    private fun setupRecyclerView(matches: MatchList) {
+    private fun setupRecyclerView() {
+        adapter = HomeAdapter(context)
+        adapter.setOnClickListener(object : ItemClickListener<Match> {
+            override fun onItemClicked(item: Match) {
+                activity?.showToast(item.gameId.toString())
+            }
+        })
 
+        rvHistoryMatches.layoutManager = LinearLayoutManager(context)
+        rvHistoryMatches.adapter = adapter
     }
 }

@@ -1,8 +1,6 @@
 package com.github.home.adapter
 
-import android.view.View
+interface ItemClickListener <T> {
 
-interface ItemClickListener {
-
-    fun onItemClicked(position: Int, view: View?)
+    fun onItemClicked(item: T)
 }
