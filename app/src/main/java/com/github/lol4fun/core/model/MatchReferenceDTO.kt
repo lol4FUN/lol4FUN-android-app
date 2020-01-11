@@ -10,11 +10,11 @@ data class MatchReferenceDTO(
     val timestamp: Long
 )
 
-fun MatchReferenceDTO.toMatch(): MatchReference {
+fun MatchReferenceDTO.toMatchReference(champions: List<Champion>): MatchReference {
     return MatchReference(
         lane = setLaneByName(lane),
         gameId = gameId,
-        champion = setChampionByKey(champion),
+        champion = setChampionByKey(champion, champions),
         date = timestamp.toDateString()
     )
 }
@@ -23,7 +23,7 @@ private fun setLaneByName(name: String): Int {
     TODO()
 }
 
-private fun setChampionByKey(key: Int): Champion {
+private fun setChampionByKey(key: Int, champions: List<Champion>): Champion {
     TODO()
 }
 

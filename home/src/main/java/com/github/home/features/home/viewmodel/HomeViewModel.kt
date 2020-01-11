@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.github.home.features.home.business.HomeBusiness
 import com.github.home.features.home.business.HomeBusinessListener
 import com.github.lol4fun.core.base.BaseViewModel
+import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.core.model.MatchList
+import com.github.lol4fun.core.model.MatchReference
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.core.inject
@@ -16,6 +18,7 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
     private var _alertMessage = MutableLiveData<String>()
     private var _history = MutableLiveData<MatchList>()
+    private var _detailMatch = MutableLiveData<Match>()
 
     private val business: HomeBusiness by inject { parametersOf(this) }
 
@@ -25,6 +28,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         get() = _alertMessage
     val history: LiveData<MatchList>
         get() = _history
+    val detailMatch: LiveData<Match>
+        get() = _detailMatch
 
 
     fun fetchHomeData() {
@@ -39,23 +44,23 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         }
     }
 
-    override fun onSuccessFetchMatch() {
+    override fun onSuccessFetchCurrentMatch() {
         //TODO()
     }
 
     override fun onSuccessFetchHistory(matches: MatchList) {
         _history.postValue(matches)
+        loadDataParallel(matches.matches) {
+            val match = it as MatchReference
+            business.getDetailMatch(match.gameId)
+        }
     }
 
-    override fun onErrorFetchMatch(error: String?) {
-        setError(error)
+    override fun onSuccessDetailMatch(match: Match) {
+        _detailMatch.value = match
     }
 
-    override fun onErrorFetchHistory(error: String?) {
-       setError(error)
-    }
-
-    private fun setError(error: String?) {
+    override fun onDefaultError(error: String?) {
         _spinner.value = false
         error?.let {
             _alertMessage.postValue(it)

@@ -12,13 +12,18 @@ class HomeBusiness(private val listener: HomeBusinessListener): BaseBusiness() {
 
     suspend fun getActualMatch() {
         delay(1000)
-        listener.onSuccessFetchMatch()
+        listener.onSuccessFetchCurrentMatch()
         //TODO()
     }
 
     suspend fun getHistory() {
         delay(1000)
-        listener.onSuccessFetchMatch()
+        listener.onSuccessFetchCurrentMatch()
+        //TODO
+    }
+
+    suspend fun getDetailMatch(gameId: Long) {
+        delay(1000)
         //TODO
     }
 }

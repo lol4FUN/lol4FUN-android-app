@@ -52,6 +52,10 @@ class HomeFragment : Fragment() {
         viewModel.history.observe(viewLifecycleOwner, Observer {
             setupRecyclerView(it)
         })
+
+        viewModel.detailMatch.observe(viewLifecycleOwner, Observer {
+
+        })
     }
 
     private fun setupListeners() {

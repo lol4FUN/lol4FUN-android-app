@@ -8,9 +8,9 @@ data class MatchListDTO(
     val endedIndex: Int
 )
 
-fun MatchListDTO.toMatchList(): MatchList {
+fun MatchListDTO.toMatchList(champions: List<Champion>): MatchList {
     return MatchList(
-        matches = matches.map { it.toMatch() },
+        matches = matches.map { it.toMatchReference(champions) },
         totalGames = totalGames,
         startIndex = startIndex,
         endedIndex = endedIndex
