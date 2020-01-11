@@ -1,10 +1,9 @@
 package com.github.lol4fun.extensions
 
 import com.github.lol4fun.core.model.Champion
-import com.github.lol4fun.core.model.ChampionsDTO
+import com.github.lol4fun.core.model.dto.ChampionsDTO
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,7 +41,7 @@ fun Map<String, Any>.toChampionsDTO(): ChampionsDTO {
     )
 }
 
-fun Long.toDateString() : String {
+fun Long.toDateString(): String {
     return try {
         val date = Date(this)
         val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.US)

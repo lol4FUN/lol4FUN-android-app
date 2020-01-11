@@ -4,9 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MatchReference(
-    val lane: Int,
-    val gameId: Long,
-    val champion: Champion?,
-    val date: String
+data class ParticipantStats(
+    val id: Long
 ): Parcelable

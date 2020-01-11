@@ -43,4 +43,22 @@ class ConstantsUtil {
     object Champions {
         const val NUMBER_OF_COLUMNS_GRID_CHAMPIONS = 4
     }
+
+    object Match {
+        const val BLUE_SIDE = "Blue"
+        const val RED_SIDE = "Red"
+        const val FLAG_WIN = "Win"
+        const val FLAG_LOSE = "Fail"
+        const val BR_CODE = "BR1"
+        const val RU_CODE = "RU"
+        const val KR_CODE = "KR"
+        const val OCE_CODE = "OC1"
+        const val JP_CODE = "JP1"
+        const val NA_CODE = "NA1"
+        const val EUN_CODE = "EUN1"
+        const val EUW_CODE = "EUW1"
+        const val TR_CODE = "TR1"
+        const val LAN_CODE = "LA1" //Confirmar dps
+        const val LAS_CODE = "LA2" //Confirmar dps
+    }
 }

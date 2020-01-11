@@ -20,4 +20,27 @@
     <string name="error_email_mismatch">Erro, você está tentando logar com um email diferente do informado ao criar a conta.</string>
     <string name="error_user_disabled">Sua conta foi suspensa pelo administrador.</string>
     <string name="main_sign_in_anonynous">Você entrou como convidado.</string>
+
+    <string name="br_code">BR</string>
+    <string name="br_name">Brasil</string>
+    <string name="ru_code">RU</string>
+    <string name="ru_name">Rússia</string>
+    <string name="na_code">NA</string>
+    <string name="na_name">América do Norte</string>
+    <string name="jp_code">JP</string>
+    <string name="jp_name">Japão</string>
+    <string name="euw_code">EUW</string>
+    <string name="euw_name">Oeste Europeu</string>
+    <string name="eun_code">EUN</string>
+    <string name="eun_name">Norte e Leste Europeu</string>
+    <string name="kr_code">KR</string>
+    <string name="kr_name">Coréia</string>
+    <string name="oce_code">OCE</string>
+    <string name="oce_name">Oceania</string>
+    <string name="tr_code">TR</string>
+    <string name="tr_name">Turquia</string>
+    <string name="lan_code">LAN</string>
+    <string name="lan_name">América Latina (Norte)</string>
+    <string name="las_code">LAS</string>
+    <string name="las_name">América Latina (Sul)</string>
 </resources>

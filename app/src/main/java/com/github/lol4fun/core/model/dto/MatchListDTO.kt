@@ -1,4 +1,7 @@
-package com.github.lol4fun.core.model
+package com.github.lol4fun.core.model.dto
+
+import com.github.lol4fun.core.model.Champion
+import com.github.lol4fun.core.model.MatchList
 
 
 data class MatchListDTO(
