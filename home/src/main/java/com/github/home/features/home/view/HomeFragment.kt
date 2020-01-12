@@ -12,6 +12,7 @@ import com.github.home.adapter.HomeAdapter
 import com.github.home.adapter.ItemClickListener
 import com.github.home.di.HomeDependencyInjection
 import com.github.home.features.home.viewmodel.HomeViewModel
+import com.github.lol4fun.core.model.CurrentGameInfo
 import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.extensions.showToast
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -46,17 +47,33 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupObservables() {
-        viewModel.spinner.observe(viewLifecycleOwner, Observer {
-            srlHome.isRefreshing = it
+        viewModel.spinner.observe(viewLifecycleOwner, Observer { spinner ->
+            spinner?.let {
+                srlHome.isRefreshing = it
+            }
         })
 
-        viewModel.alertMessage.observe(viewLifecycleOwner, Observer {
-            activity?.showToast(it)
+        viewModel.alertMessage.observe(viewLifecycleOwner, Observer { message ->
+            message?.let {
+                activity?.showToast(it)
+            }
         })
 
-        viewModel.history.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        viewModel.history.observe(viewLifecycleOwner, Observer { list ->
+            list?.let {
                 adapter.updateData(it)
+            }
+        })
+
+        viewModel.currentGame.observe(viewLifecycleOwner, Observer { current ->
+            current?.let {
+                setupCurrentGame(it)
+            }
+        })
+
+        viewModel.notInCurrentGame.observe(viewLifecycleOwner, Observer { notCurrentGame ->
+            notCurrentGame?.let {
+                //Update data
             }
         })
     }
@@ -78,5 +95,9 @@ class HomeFragment : Fragment() {
 
         rvHistoryMatches.layoutManager = LinearLayoutManager(context)
         rvHistoryMatches.adapter = adapter
+    }
+
+    private fun setupCurrentGame(currentGame: CurrentGameInfo) {
+        //TODO()
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.home.features.home.business.HomeBusiness
 import com.github.home.features.home.business.HomeBusinessListener
 import com.github.lol4fun.core.base.BaseViewModel
+import com.github.lol4fun.core.model.CurrentGameInfo
 import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.core.model.MatchList
 import com.github.lol4fun.core.model.MatchReference
@@ -18,6 +19,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
     private var _alertMessage = MutableLiveData<String>()
     private var _history = MutableLiveData<List<Match>>()
+    private var _currentGame = MutableLiveData<CurrentGameInfo>()
+    private var _notInCurrentGame = MutableLiveData<Boolean>()
 
     private val business: HomeBusiness by inject { parametersOf(this) }
 
@@ -27,13 +30,17 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         get() = _alertMessage
     val history: LiveData<List<Match>>
         get() = _history
+    val currentGame: LiveData<CurrentGameInfo>
+        get() = _currentGame
+    val notInCurrentGame: LiveData<Boolean>
+        get() = _notInCurrentGame
 
 
     fun fetchHomeData() {
         _history.value = null
         _spinner.value = true
         viewModelScope.launch (coroutineContext.IO) {
-            val callOne = async { business.getActualMatch() }
+            val callOne = async { business.getCurrentGame() }
             val callTwo = async { business.getHistory() }
 
             callOne.await()
@@ -42,8 +49,10 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         }
     }
 
-    override fun onSuccessFetchCurrentMatch() {
-        //TODO()
+    override fun onSuccessFetchCurrentGame(currentGame: CurrentGameInfo?, inCurrentGame: Boolean) {
+        if (inCurrentGame) {
+            _currentGame.postValue(currentGame)
+        } else _notInCurrentGame.postValue(true)
     }
 
     override fun onSuccessFetchHistory(matches: MatchList) {

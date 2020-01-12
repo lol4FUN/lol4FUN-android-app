@@ -10,15 +10,15 @@ class HomeBusiness(private val listener: HomeBusinessListener): BaseBusiness() {
 
     private val repository: HomeRepository by inject()
 
-    suspend fun getActualMatch() {
+    suspend fun getCurrentGame() {
         delay(1000)
-        listener.onSuccessFetchCurrentMatch()
+        //listener.onSuccessFetchCurrentGame()
         //TODO()
     }
 
     suspend fun getHistory() {
         delay(1000)
-        listener.onSuccessFetchCurrentMatch()
+        //listener.onSuccessFetchCurrentGame()
         //TODO
     }
 
