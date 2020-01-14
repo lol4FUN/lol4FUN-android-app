@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.github.lol4fun.core.model.Customer
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_PROFILE_ICON
@@ -52,20 +53,14 @@ class ProfileFragment : Fragment() {
             pbProfileLoading.visibility = View.GONE
 
             it?.let {
-                GlideApp
-                    .with(this)
-                    .load("$BASE_URL_PROFILE_ICON${it.profileIconId}.png")
-                    .into(civProfileSummonerIcon)
-
-                etProfileSummonerName.text = Editable.Factory.getInstance().newEditable(it.summonerName)
-                etProfileName.text = Editable.Factory.getInstance().newEditable(it.name)
-                tilProfileEmail.editText?.text = Editable.Factory.getInstance().newEditable(it.email)
-                swProfileSystemColorPreference.isChecked = it.colorPreference == FIELD_USER_COLOR_PREFERENCE_DARK
+                fillUserInfo(it)
             }
         })
 
         btProfileSave.setOnClickListener {
             if (!etProfileName.text.toString().isBlank() && !etProfileSummonerName.text.toString().isBlank()) {
+                pbProfileLoading.visibility = View.VISIBLE
+
                 val hashMapProfile = getHashMapProfile()
 
                 viewModel.saveUserInfo(hashMapProfile)
@@ -76,15 +71,29 @@ class ProfileFragment : Fragment() {
 
         viewModel.onFailureSaveInfoData.observe(viewLifecycleOwner, Observer {
             it?.let {
+                pbProfileLoading.visibility = View.GONE
                 context?.showSnackBar(btProfileSave, it)
             }
         })
 
         viewModel.onSuccessSaveInfoData.observe(viewLifecycleOwner, Observer {
             it?.let {
+                pbProfileLoading.visibility = View.GONE
                 context?.showToast(it)
             }
         })
+    }
+
+    private fun fillUserInfo(customer: Customer) {
+        GlideApp
+            .with(this)
+            .load("$BASE_URL_PROFILE_ICON${customer.profileIconId}.png")
+            .into(civProfileSummonerIcon)
+
+        etProfileSummonerName.text = Editable.Factory.getInstance().newEditable(customer.summonerName)
+        etProfileName.text = Editable.Factory.getInstance().newEditable(customer.name)
+        tilProfileEmail.editText?.text = Editable.Factory.getInstance().newEditable(customer.email)
+        swProfileSystemColorPreference.isChecked = customer.colorPreference == FIELD_USER_COLOR_PREFERENCE_DARK
     }
 
     private fun getHashMapProfile(): HashMap<String, Any> {
