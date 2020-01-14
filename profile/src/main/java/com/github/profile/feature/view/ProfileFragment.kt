@@ -66,15 +66,7 @@ class ProfileFragment : Fragment() {
 
         btProfileSave.setOnClickListener {
             if (!etProfileName.text.toString().isBlank() && !etProfileSummonerName.text.toString().isBlank()) {
-                val hashMapProfile = hashMapOf(
-                    FIELD_USER_NAME to etProfileName.text.toString(),
-                    FIELD_USER_SUMMONER_NAME to etProfileSummonerName.text.toString(),
-                    FIELD_USER_COLOR_PREFERENCE to
-                            if (swProfileSystemColorPreference.isChecked)
-                                FIELD_USER_COLOR_PREFERENCE_DARK
-                            else
-                                FIELD_USER_COLOR_PREFERENCE_LIGHT
-                )
+                val hashMapProfile = getHashMapProfile()
 
                 viewModel.saveUserInfo(hashMapProfile)
             } else {
@@ -93,5 +85,17 @@ class ProfileFragment : Fragment() {
                 context?.showToast(it)
             }
         })
+    }
+
+    private fun getHashMapProfile(): HashMap<String, Any> {
+        return hashMapOf(
+            FIELD_USER_NAME to etProfileName.text.toString(),
+            FIELD_USER_SUMMONER_NAME to etProfileSummonerName.text.toString(),
+            FIELD_USER_COLOR_PREFERENCE to
+                    if (swProfileSystemColorPreference.isChecked)
+                        FIELD_USER_COLOR_PREFERENCE_DARK
+                    else
+                        FIELD_USER_COLOR_PREFERENCE_LIGHT
+        )
     }
 }
