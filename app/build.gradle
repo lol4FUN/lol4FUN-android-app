@@ -55,8 +55,8 @@ dependencies {
     //firebase
     implementation "com.google.firebase:firebase-analytics:${versions.firebaseAnalytics}"
     implementation "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
-    implementation "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
-    implementation "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
+    api "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
+    api "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
 
     //core
     api "androidx.appcompat:appcompat:${versions.appCompat}"
