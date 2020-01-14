@@ -3,4 +3,5 @@
     <string name="hint_email">E-mail</string>
     <string name="placeholder_email">Digite seu e-mail</string>
     <string name="label_dark_mode">Modo escuro</string>
+    <string name="profile_save">Salvar</string>
 </resources>
