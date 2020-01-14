@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.github.lol4fun.core.model.Vi
+import com.github.lol4fun.extensions.showSnackBar
+import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_PROFILE_ICON
+import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_DARK
+import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_LIGHT
+import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_NAME
+import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_SUMMONER_NAME
 import com.github.lol4fun.util.GlideApp
 import com.github.profile.R
 import com.github.profile.di.ProfileDependencyInjection
@@ -56,6 +61,36 @@ class ProfileFragment : Fragment() {
                 etProfileName.text = Editable.Factory.getInstance().newEditable(it.name)
                 tilProfileEmail.editText?.text = Editable.Factory.getInstance().newEditable(it.email)
                 swProfileSystemColorPreference.isChecked = it.colorPreference == FIELD_USER_COLOR_PREFERENCE_DARK
+            }
+        })
+
+        btProfileSave.setOnClickListener {
+            if (!etProfileName.text.toString().isBlank() && !etProfileSummonerName.text.toString().isBlank()) {
+                val hashMapProfile = hashMapOf(
+                    FIELD_USER_NAME to etProfileName.text.toString(),
+                    FIELD_USER_SUMMONER_NAME to etProfileSummonerName.text.toString(),
+                    FIELD_USER_COLOR_PREFERENCE to
+                            if (swProfileSystemColorPreference.isChecked)
+                                FIELD_USER_COLOR_PREFERENCE_DARK
+                            else
+                                FIELD_USER_COLOR_PREFERENCE_LIGHT
+                )
+
+                viewModel.saveUserInfo(hashMapProfile)
+            } else {
+                context?.showSnackBar(btProfileSave, R.string.error_invalid_field)
+            }
+        }
+
+        viewModel.onFailureSaveInfoData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                context?.showSnackBar(btProfileSave, it)
+            }
+        })
+
+        viewModel.onSuccessSaveInfoData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                context?.showToast(it)
             }
         })
     }
