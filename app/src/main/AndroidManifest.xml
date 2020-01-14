@@ -31,6 +31,7 @@
         <activity
             android:name="com.github.lol4fun.features.main.view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
