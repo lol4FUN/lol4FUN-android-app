@@ -8,7 +8,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val businessModule = module {
-    single { (l: HomeBusinessListener) -> HomeBusiness(l) }
+    single { (l: HomeBusinessListener?) -> HomeBusiness(l) }
 }
 
 val repositoryModule = module {

@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import org.koin.core.inject
 
 
-class HomeBusiness(private val listener: HomeBusinessListener): BaseBusiness() {
+class HomeBusiness(private val listener: HomeBusinessListener?): BaseBusiness() {
 
     private val repository: HomeRepository by inject()
 

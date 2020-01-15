@@ -26,7 +26,8 @@ buildscript {
             'firebaseAuth'          : '19.2.0',
             'circleImageView'       : '3.0.1',
             'navigation'            : '2.3.0-SNAPSHOT',
-            'koin'                  : '2.0.1'
+            'koin'                  : '2.0.1',
+            'paging'            : '2.1.1'
     ]
 
     repositories {

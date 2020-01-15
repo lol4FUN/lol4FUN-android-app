@@ -4,16 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.home.R
 import com.github.lol4fun.core.model.Match
 
 class HomeAdapter(
     private val context: Context?
-) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-    private var historyList = listOf<Match>()
-    private lateinit var clickListener: ItemClickListener<Match>
+) : PagedListAdapter<Match, HomeAdapter.HomeViewHolder>(DiffUtilCallback()) {
 
+    private lateinit var clickListener: ItemClickListener<Match>
 
     fun setOnClickListener(cl: ItemClickListener<Match>) {
         clickListener = cl
@@ -25,23 +25,13 @@ class HomeAdapter(
         return HomeViewHolder(view)
     }
 
-    override fun getItemCount() = historyList.size
-
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(context, historyList[position])
-        holder.itemView.setOnClickListener {
-            clickListener.onItemClicked(historyList[position])
+        getItem(position)?.let { match ->
+            holder.bind(context, match)
+            holder.itemView.setOnClickListener {
+                clickListener.onItemClicked(match)
+            }
         }
-    }
-
-    fun clearData() {
-        historyList = emptyList()
-        notifyDataSetChanged()
-    }
-
-    fun updateData(data: List<Match>) {
-        historyList = data
-        notifyDataSetChanged()
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {

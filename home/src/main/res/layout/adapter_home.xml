@@ -8,13 +8,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivChampion"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/default_size_champion_avatar"
+        android:layout_height="@dimen/default_size_champion_avatar"
         android:src="@drawable/ic_image_default"
         app:civ_border_color="@color/colorPrimary"
         app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvKDA"
@@ -29,10 +30,11 @@
 
     <ImageView
         android:id="@+id/ivPosition"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/default_size_champion_avatar"
+        android:layout_height="@dimen/default_size_champion_avatar"
         android:contentDescription="@string/position"
         android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

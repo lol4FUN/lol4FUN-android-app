@@ -61,4 +61,8 @@ class ConstantsUtil {
         const val LAN_CODE = "LA1" //Confirmar dps
         const val LAS_CODE = "LA2" //Confirmar dps
     }
+
+    object Home {
+        const val PAGE_SIZE = 10
+    }
 }

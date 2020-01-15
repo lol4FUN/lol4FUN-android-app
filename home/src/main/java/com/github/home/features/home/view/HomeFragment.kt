@@ -60,9 +60,7 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.history.observe(viewLifecycleOwner, Observer { list ->
-            list?.let {
-                adapter.updateData(it)
-            }
+            adapter.submitList(list)
         })
 
         viewModel.currentGame.observe(viewLifecycleOwner, Observer { current ->
@@ -81,7 +79,6 @@ class HomeFragment : Fragment() {
     private fun setupListeners() {
         srlHome.setOnRefreshListener {
             viewModel.fetchHomeData()
-            adapter.clearData()
         }
     }
 
