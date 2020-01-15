@@ -5,7 +5,6 @@ import com.github.lol4fun.core.model.Customer
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_NAME
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_SUMMONER_NAME
-import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseNames.DATABASE_CUSTOMERS
 import com.github.profile.feature.listener.ProfileListener
 import com.github.profile.repository.ProfileRepository
 import com.google.android.gms.tasks.Task
@@ -33,9 +32,7 @@ class ProfileBusiness(
     }
 
     private fun getTaskToUpdateFiretore(hashMapProfile: HashMap<String, Any>): Task<Void> {
-        val userReference = repository.db
-            .collection(DATABASE_CUSTOMERS)
-            .document(repository.auth.currentUser?.uid ?: "")
+        val userReference = repository.getUserReference()
 
         return userReference.update(
             mapOf(
@@ -51,7 +48,7 @@ class ProfileBusiness(
             .setDisplayName(hashMapProfile[FIELD_USER_NAME] as? String)
             .build()
 
-        return repository.auth.currentUser?.updateProfile(profileUpdate)
+        return repository.getAuthTask(profileUpdate)
     }
 
 }
