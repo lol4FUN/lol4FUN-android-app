@@ -15,6 +15,8 @@ import com.github.home.features.home.viewmodel.HomeViewModel
 import com.github.lol4fun.core.model.CurrentGameInfo
 import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.extensions.showToast
+import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
+import com.github.lol4fun.util.GlideApp
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +24,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: HomeAdapter
+    private lateinit var currentGame: CurrentGameInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,15 +74,14 @@ class HomeFragment : Fragment() {
 
         viewModel.notInCurrentGame.observe(viewLifecycleOwner, Observer { notCurrentGame ->
             notCurrentGame?.let {
-                //Update data
+                showCurrentInfo(it)
             }
         })
     }
 
     private fun setupListeners() {
-        srlHome.setOnRefreshListener {
-            viewModel.fetchHomeData()
-        }
+        srlHome.setOnRefreshListener { viewModel.fetchHomeData() }
+        btCurrentGame.setOnClickListener { /* Go To next fragment sending currentGame */ }
     }
 
     private fun setupRecyclerView() {
@@ -95,6 +97,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupCurrentGame(currentGame: CurrentGameInfo) {
-        //TODO()
+        currentGame.also { currentGameInfo ->
+            this.currentGame = currentGameInfo
+            currentGameInfo.participants.find { it.summonerName == "" }?.champion?.let { champion ->
+                GlideApp
+                    .with(this)
+                    .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
+                    .into(ivHomeChampion)
+            }
+        }
+    }
+
+    private fun showCurrentInfo(notInCurrentGame: Boolean) {
+        if (notInCurrentGame) {
+            clCurrentGame.visibility = View.GONE
+            tvNotCurrentGame.visibility = View.VISIBLE
+        } else {
+            clCurrentGame.visibility = View.VISIBLE
+            tvNotCurrentGame.visibility = View.GONE
+        }
     }
 }

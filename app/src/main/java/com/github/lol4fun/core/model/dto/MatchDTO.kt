@@ -16,7 +16,11 @@ data class MatchDTO(
     val gameDuration: Long  //Seconds
 )
 
-fun MatchDTO.toMatch(champions: List<Champion>): Match {
+fun MatchDTO.toMatch(
+    champions: List<Champion>,
+    champion: Champion?,
+    lane: Int
+): Match {
     return Match(
         gameId = gameId,
         participant = participantIdentities.map { it.toParticipantIdentity() },
@@ -25,6 +29,8 @@ fun MatchDTO.toMatch(champions: List<Champion>): Match {
         gameType = gameType,
         teams = teams.map { it.toTeamStats(champions) },
         participantStatsList = participants.map { it.toParticipantStats() },
-        gameDuration = gameDuration.secondsToFormattedTime()
+        gameDuration = gameDuration.secondsToFormattedTime(),
+        champion = champion,
+        lane = lane
     )
 }

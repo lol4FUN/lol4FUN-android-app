@@ -11,7 +11,7 @@
         android:layout_width="@dimen/default_size_champion_avatar"
         android:layout_height="@dimen/default_size_champion_avatar"
         android:src="@drawable/ic_image_default"
-        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_color="@color/colorCircleImageBorder"
         app:civ_border_width="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tvKDA"
-        style="@style/HeaderText"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

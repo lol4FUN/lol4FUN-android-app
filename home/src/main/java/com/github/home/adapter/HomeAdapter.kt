@@ -4,10 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.home.R
 import com.github.lol4fun.core.model.Match
+import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
+import com.github.lol4fun.util.GlideApp
+import kotlinx.android.synthetic.main.adapter_home.view.*
 
 class HomeAdapter(
     private val context: Context?
@@ -37,7 +41,23 @@ class HomeAdapter(
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(context: Context?, data: Match) {
-            //TODO()
+            itemView.apply {
+                data.champion?.let { champion ->
+                    context?.let {
+                        ivPosition.background = ContextCompat.getDrawable(it, data.lane)
+                        GlideApp
+                            .with(it)
+                            .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
+                            .into(ivChampion)
+                    }
+                }
+
+                val dataPlayer = data.participant.find { it.player.summonerName == "" }
+                data.participantStatsList.find { it.id == dataPlayer?.id }?.let { stats ->
+                    val kda = "${stats.kills}/${stats.deaths}/${stats.assists}"
+                    tvKDA.text = kda
+                }
+            }
         }
     }
 }

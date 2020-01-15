@@ -3,4 +3,6 @@
     <string name="header_home">Últimas partidas</string>
     <string name="current_match">Partida atual</string>
     <string name="position">position</string>
+    <string name="not_in_current_game">Jogador não está em uma partida ativa no momento...</string>
+    <string name="details_text">Veja mais detalhes</string>
 </resources>

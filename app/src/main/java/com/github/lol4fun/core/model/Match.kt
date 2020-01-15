@@ -12,5 +12,7 @@ data class Match(
     val gameType: String,
     val teams: List<TeamStats>,
     val participantStatsList: List<ParticipantStats>,
-    val gameDuration: String
+    val gameDuration: String,
+    val champion: Champion?,
+    val lane: Int
 ): Parcelable

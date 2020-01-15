@@ -55,6 +55,7 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
 
         if (inCurrentGame) {
             _currentGame.postValue(currentGame)
+            _notInCurrentGame.postValue(false)
         } else _notInCurrentGame.postValue(true)
     }
 

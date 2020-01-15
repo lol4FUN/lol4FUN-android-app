@@ -6,6 +6,8 @@
 
     <color name="colorOnBackground">#ffffff</color>
 
+    <color name="colorCircleImageBorder">#ffffff</color>
+
     <color name="colorStatusBar">#000000</color>
     <color name="colorBackground">#121212</color>
 
