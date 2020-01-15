@@ -27,7 +27,7 @@ buildscript {
             'circleImageView'       : '3.0.1',
             'navigation'            : '2.3.0-SNAPSHOT',
             'koin'                  : '2.0.1',
-            'paging'            : '2.1.1'
+            'paging'                : '2.1.1'
     ]
 
     repositories {
