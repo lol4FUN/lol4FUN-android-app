@@ -9,11 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.home.R
 import com.github.home.adapter.HomeAdapter
-import com.github.home.adapter.ItemClickListener
 import com.github.home.di.HomeDependencyInjection
 import com.github.home.features.home.viewmodel.HomeViewModel
 import com.github.lol4fun.core.model.CurrentGameInfo
-import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
 import com.github.lol4fun.util.GlideApp
@@ -51,15 +49,11 @@ class HomeFragment : Fragment() {
 
     private fun setupObservables() {
         viewModel.spinner.observe(viewLifecycleOwner, Observer { spinner ->
-            spinner?.let {
-                srlHome.isRefreshing = it
-            }
+            spinner?.let { srlHome.isRefreshing = it }
         })
 
         viewModel.alertMessage.observe(viewLifecycleOwner, Observer { message ->
-            message?.let {
-                activity?.showToast(it)
-            }
+            message?.let { activity?.showToast(it) }
         })
 
         viewModel.history.observe(viewLifecycleOwner, Observer { list ->
@@ -67,15 +61,11 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.currentGame.observe(viewLifecycleOwner, Observer { current ->
-            current?.let {
-                setupCurrentGame(it)
-            }
+            current?.let { setupCurrentGame(it) }
         })
 
         viewModel.notInCurrentGame.observe(viewLifecycleOwner, Observer { notCurrentGame ->
-            notCurrentGame?.let {
-                showCurrentInfo(it)
-            }
+            notCurrentGame?.let { showCurrentInfo(it) }
         })
     }
 
@@ -86,12 +76,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         adapter = HomeAdapter(context)
-        adapter.setOnClickListener(object : ItemClickListener<Match> {
-            override fun onItemClicked(item: Match) {
-                activity?.showToast(item.gameId.toString())
-            }
-        })
-
+        adapter.itemClicked = { activity?.showToast(it.gameId.toString()) }
         rvHistoryMatches.layoutManager = LinearLayoutManager(context)
         rvHistoryMatches.adapter = adapter
     }

@@ -17,11 +17,7 @@ class HomeAdapter(
     private val context: Context?
 ) : PagedListAdapter<Match, HomeAdapter.HomeViewHolder>(DiffUtilCallback()) {
 
-    private lateinit var clickListener: ItemClickListener<Match>
-
-    fun setOnClickListener(cl: ItemClickListener<Match>) {
-        clickListener = cl
-    }
+    var itemClicked: ((Match) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -33,7 +29,7 @@ class HomeAdapter(
         getItem(position)?.let { match ->
             holder.bind(context, match)
             holder.itemView.setOnClickListener {
-                clickListener.onItemClicked(match)
+                itemClicked?.let { it(match) }
             }
         }
     }
