@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: HomeAdapter
     private lateinit var currentGame: CurrentGameInfo
+    private var encryptedSummonerId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.fetchHomeData()
+        viewModel.getSummoner()
         setupObservables()
         setupListeners()
         setupRecyclerView()
@@ -54,6 +55,13 @@ class HomeFragment : Fragment() {
 
         viewModel.alertMessage.observe(viewLifecycleOwner, Observer { message ->
             message?.let { activity?.showToast(it) }
+        })
+
+        viewModel.summoner.observe(viewLifecycleOwner, Observer { summoner ->
+            summoner?.id?.let {
+                encryptedSummonerId = it
+                viewModel.fetchHomeData(encryptedSummonerId)
+            } ?: run { /* Get summoner name */ }
         })
 
         viewModel.history.observe(viewLifecycleOwner, Observer { list ->
@@ -70,7 +78,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        srlHome.setOnRefreshListener { viewModel.fetchHomeData() }
+        srlHome.setOnRefreshListener {
+            if (encryptedSummonerId.isNotBlank()) {
+                viewModel.fetchHomeData(encryptedSummonerId)
+            }
+        }
         btCurrentGame.setOnClickListener { /* Go To next fragment sending currentGame */ }
     }
 

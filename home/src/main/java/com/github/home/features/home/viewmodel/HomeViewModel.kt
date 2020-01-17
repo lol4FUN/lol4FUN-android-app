@@ -11,6 +11,7 @@ import com.github.home.features.home.business.HomeBusinessListener
 import com.github.home.repository.HistoryDataSource
 import com.github.lol4fun.core.base.BaseViewModel
 import com.github.lol4fun.core.model.CurrentGameInfo
+import com.github.lol4fun.core.model.Customer
 import com.github.lol4fun.core.model.Match
 import com.github.lol4fun.util.ConstantsUtil.Home.PAGE_SIZE
 import kotlinx.coroutines.launch
@@ -22,6 +23,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _alertMessage = MutableLiveData<String>()
     private var _currentGame = MutableLiveData<CurrentGameInfo>()
     private var _notInCurrentGame = MutableLiveData<Boolean>()
+    private var _summoner = MutableLiveData<Customer>()
+
 
     private val business: HomeBusiness by inject { parametersOf(this) }
 
@@ -33,6 +36,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         get() = _currentGame
     val notInCurrentGame: LiveData<Boolean>
         get() = _notInCurrentGame
+    val summoner: LiveData<Customer>
+        get() = _summoner
     var history: LiveData<PagedList<Match>>
 
     init {
@@ -43,10 +48,16 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         history = initializedPagedListBuilder(config).build()
     }
 
-    fun fetchHomeData() {
+    fun getSummoner() {
+        viewModelScope.launch (coroutineContext.IO) {
+            _summoner.postValue(business.getUserFirestore())
+        }
+    }
+
+    fun fetchHomeData(id: String) {
         _spinner.postValue(true)
         viewModelScope.launch (coroutineContext.IO) {
-            business.getCurrentGame()
+            business.getCurrentGame(encryptedSummonerId = id)
         }
     }
 
@@ -68,13 +79,13 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
 
     private fun initializedPagedListBuilder(
         config: PagedList.Config
-    ): LivePagedListBuilder<Long, Match> {
-        val dataSourceFactory = object : DataSource.Factory<Long, Match>() {
-            override fun create(): DataSource<Long, Match> {
+    ): LivePagedListBuilder<Int, Match> {
+        val dataSourceFactory = object : DataSource.Factory<Int, Match>() {
+            override fun create(): DataSource<Int, Match> {
                 return HistoryDataSource(coroutineContext.IO)
             }
         }
 
-        return LivePagedListBuilder<Long, Match>(dataSourceFactory, config)
+        return LivePagedListBuilder<Int, Match>(dataSourceFactory, config)
     }
 }
