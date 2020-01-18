@@ -4,6 +4,7 @@ import com.github.champions.features.champions.business.ChampionsBusiness
 import com.github.champions.features.champions.listener.ChampionsListener
 import com.github.champions.features.champions.viewmodel.ChampionsViewModel
 import com.github.champions.repository.ChampionsRepository
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val businessModule = module {
@@ -15,5 +16,5 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    single { ChampionsViewModel() }
+    viewModel { ChampionsViewModel() }
 }
