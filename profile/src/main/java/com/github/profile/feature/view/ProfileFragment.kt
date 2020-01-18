@@ -21,11 +21,11 @@ import com.github.profile.R
 import com.github.profile.di.ProfileDependencyInjection
 import com.github.profile.feature.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
-    private val viewModel: ProfileViewModel by inject()
+    private val viewModel: ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
