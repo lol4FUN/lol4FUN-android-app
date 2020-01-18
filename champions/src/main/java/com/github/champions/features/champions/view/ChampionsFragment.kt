@@ -15,7 +15,6 @@ import com.github.champions.features.champions.viewmodel.ChampionsViewModel
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.util.ConstantsUtil.Champions.NUMBER_OF_COLUMNS_GRID_CHAMPIONS
 import kotlinx.android.synthetic.main.fragment_champions.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChampionsFragment: Fragment() {
