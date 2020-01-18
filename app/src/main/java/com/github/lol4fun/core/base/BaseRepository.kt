@@ -46,9 +46,9 @@ open class BaseRepository {
     }
 
     fun getUserFirestore(): Customer? {
-        val docRef = FirebaseFirestore.getInstance()
+        val docRef = db
             .collection(ConstantsUtil.FirestoreDataBaseNames.DATABASE_CUSTOMERS)
-            .document(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+            .document(auth.currentUser?.uid ?: "")
 
         val result = Tasks.await(docRef.get())
 
