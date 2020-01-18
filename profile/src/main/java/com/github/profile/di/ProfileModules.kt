@@ -4,6 +4,7 @@ import com.github.profile.feature.business.ProfileBusiness
 import com.github.profile.feature.listener.ProfileListener
 import com.github.profile.feature.viewmodel.ProfileViewModel
 import com.github.profile.repository.ProfileRepository
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val businessModule = module {
@@ -15,5 +16,5 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    single { ProfileViewModel() }
+    viewModel { ProfileViewModel() }
 }
