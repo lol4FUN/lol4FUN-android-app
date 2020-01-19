@@ -54,4 +54,10 @@ open class BaseRepository {
 
         return result.toObject(Customer::class.java)
     }
+
+    suspend fun getChampions(): Resource {
+        return safeApiCall(
+            call = { apiDDragon.getChampionsAsync() }
+        )
+    }
 }
