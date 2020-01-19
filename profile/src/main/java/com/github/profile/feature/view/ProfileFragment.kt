@@ -5,6 +5,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.lol4fun.core.model.Customer
@@ -43,20 +44,34 @@ class ProfileFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserFirestore()
+        val customer = viewModel.onSuccessGetUserFirestore.value
+
+        if (customer == null) {
+            viewModel.getUserFirestore()
+            setupObservableGetUserFirestore()
+        } else {
+            fillUserInfo(customer)
+            setupVisibilityMainContent()
+        }
+
         setupObservables()
     }
 
-    private fun setupObservables() {
-        viewModel.onSuccessGetUserFirestore.observe(viewLifecycleOwner, Observer {
-            vgProfileContent.visibility = View.VISIBLE
-            pbProfileLoading.visibility = View.GONE
+    private fun setupVisibilityMainContent(){
+        vgProfileContent.visibility = View.VISIBLE
+        pbProfileLoading.visibility = View.GONE
+    }
 
+    private fun setupObservableGetUserFirestore() {
+        viewModel.onSuccessGetUserFirestore.observe(viewLifecycleOwner, Observer {
+            setupVisibilityMainContent()
             it?.let {
-                fillUserInfo(it)
+                fillUserInfo(it, true)
             }
         })
+    }
 
+    private fun setupObservables() {
         btProfileSave.setOnClickListener {
             if (!etProfileName.text.toString().isBlank() && !etProfileSummonerName.text.toString().isBlank()) {
                 pbProfileLoading.visibility = View.VISIBLE
@@ -82,18 +97,30 @@ class ProfileFragment : Fragment() {
                 context?.showToast(it)
             }
         })
+
+        swProfileSystemColorPreference.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
-    private fun fillUserInfo(customer: Customer) {
+    private fun fillUserInfo(customer: Customer, fillSystemColor: Boolean = false) {
         GlideApp
             .with(this)
             .load("$BASE_URL_PROFILE_ICON${customer.profileIconId}.png")
             .into(civProfileSummonerIcon)
 
-        etProfileSummonerName.text = Editable.Factory.getInstance().newEditable(customer.summonerName)
-        etProfileName.text = Editable.Factory.getInstance().newEditable(customer.name)
-        tilProfileEmail.editText?.text = Editable.Factory.getInstance().newEditable(customer.email)
-        swProfileSystemColorPreference.isChecked = customer.colorPreference == FIELD_USER_COLOR_PREFERENCE_DARK
+        etProfileSummonerName?.text = Editable.Factory.getInstance().newEditable(customer.summonerName)
+        etProfileName?.text = Editable.Factory.getInstance().newEditable(customer.name)
+        tilProfileEmail?.editText?.text = Editable.Factory.getInstance().newEditable(customer.email)
+
+        if (fillSystemColor) {
+            swProfileSystemColorPreference?.isChecked =
+                customer.colorPreference == FIELD_USER_COLOR_PREFERENCE_DARK
+        }
     }
 
     private fun getHashMapProfile(): HashMap<String, Any> {
