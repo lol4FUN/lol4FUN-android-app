@@ -11,17 +11,16 @@ data class MatchReferenceDTO(
     val timestamp: Long
 )
 
-fun MatchReferenceDTO.toMatchReference(champions: List<Champion>): MatchReference {
+fun MatchReferenceDTO.toMatchReference(champions: List<Champion>?): MatchReference {
     return MatchReference(
         lane = setLaneByName(lane),
         gameId = gameId,
-        champion = champions.find { it.key == champion.toString() },
+        champion = champions?.find { it.key == champion.toString() },
         date = timestamp.toDateString()
     )
 }
 
 private fun setLaneByName(name: String): Int {
-    //Add to project image lane
-    TODO()
+    return 1
 }
 

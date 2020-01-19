@@ -13,7 +13,7 @@ class DiffUtilCallback : DiffUtil.ItemCallback<Match>() {
                 && oldItem.gameMode == newItem.gameMode
                 && oldItem.gameType == newItem.gameType
                 && oldItem.participant == newItem.participant
-                && oldItem.participantStatsList == newItem.participantStatsList
+                && oldItem.participants == newItem.participants
                 && oldItem.teams == newItem.teams
     }
 

@@ -10,5 +10,6 @@ data class Player (
     val platformId: String,
     val profileIcon: Int,
     val summonerId: String,
-    val accountId: String
+    val accountId: String,
+    val user: Boolean
 ): Parcelable

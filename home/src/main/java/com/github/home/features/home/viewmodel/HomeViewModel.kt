@@ -61,7 +61,7 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         }
     }
 
-    override fun onSuccessFetchCurrentGame(currentGame: CurrentGameInfo?, inCurrentGame: Boolean) {
+    override fun onCurrentGameStatus(currentGame: CurrentGameInfo?, inCurrentGame: Boolean) {
         _spinner.postValue(false)
 
         if (inCurrentGame) {

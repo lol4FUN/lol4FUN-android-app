@@ -4,7 +4,7 @@ import com.github.lol4fun.core.model.CurrentGameInfo
 
 interface HomeBusinessListener {
 
-    fun onSuccessFetchCurrentGame(currentGame: CurrentGameInfo?, inCurrentGame: Boolean)
+    fun onCurrentGameStatus(currentGame: CurrentGameInfo?, inCurrentGame: Boolean)
 
     fun onDefaultError(error: String?)
 }

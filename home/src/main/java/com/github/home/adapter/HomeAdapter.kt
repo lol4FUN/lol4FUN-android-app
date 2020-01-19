@@ -38,20 +38,23 @@ class HomeAdapter(
 
         fun bind(context: Context?, data: Match) {
             itemView.apply {
-                data.champion?.let { champion ->
-                    context?.let {
-                        ivPosition.background = ContextCompat.getDrawable(it, data.lane)
-                        GlideApp
-                            .with(it)
-                            .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
-                            .into(ivChampion)
-                    }
-                }
-
-                val dataPlayer = data.participant.find { it.player.summonerName == "" }
-                data.participantStatsList.find { it.id == dataPlayer?.id }?.let { stats ->
-                    val kda = "${stats.kills}/${stats.deaths}/${stats.assists}"
+                val dataPlayer = data.participant.find { it.player.user }
+                data.participants.find { it.participantId == dataPlayer?.id }?.let { user ->
+                    val kda =
+                        "${user.stats.kills}/${user.stats.deaths}/${user.stats.assists}"
                     tvKDA.text = kda
+                    user.champion?.let { champion ->
+                        context?.let {
+                            data.lane?.let { lane ->
+                                ivPosition.background = ContextCompat.getDrawable(it, lane)
+                            }
+
+                            GlideApp
+                                .with(it)
+                                .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
+                                .into(ivChampion)
+                        }
+                    }
                 }
             }
         }

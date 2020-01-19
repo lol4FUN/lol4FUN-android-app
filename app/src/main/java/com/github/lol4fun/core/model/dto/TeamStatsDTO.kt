@@ -26,7 +26,7 @@ data class TeamStatsDTO(
     val dragonKills: String
 )
 
-fun TeamStatsDTO.toTeamStats(champions: List<Champion>): TeamStats {
+fun TeamStatsDTO.toTeamStats(champions: List<Champion>?): TeamStats {
     return TeamStats(
         firstDragon = firstDragon,
         firstInhibitor = firstInhibitor,

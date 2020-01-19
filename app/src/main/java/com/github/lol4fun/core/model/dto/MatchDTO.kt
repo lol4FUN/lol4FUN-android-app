@@ -12,25 +12,24 @@ data class MatchDTO(
     val gameMode: String,
     val gameType: String,
     val teams: List<TeamStatsDTO>,
-    val participants: List<ParticipantStatsDTO>,
+    val participants: List<ParticipantDTO>,
     val gameDuration: Long  //Seconds
 )
 
 fun MatchDTO.toMatch(
-    champions: List<Champion>,
-    champion: Champion?,
-    lane: Int
+    champions: List<Champion>?,
+    lane: Int?,
+    id: String
 ): Match {
     return Match(
         gameId = gameId,
-        participant = participantIdentities.map { it.toParticipantIdentity() },
+        participant = participantIdentities.map { it.toParticipantIdentity(id) },
         server = platformId.setServerByCode(),
         gameMode = gameMode,
         gameType = gameType,
         teams = teams.map { it.toTeamStats(champions) },
-        participantStatsList = participants.map { it.toParticipantStats() },
+        participants = participants.map { it.toParticipant(champions) },
         gameDuration = gameDuration.secondsToFormattedTime(),
-        champion = champion,
         lane = lane
     )
 }

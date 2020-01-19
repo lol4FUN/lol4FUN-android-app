@@ -11,13 +11,14 @@ data class PlayerDTO(
     val accountId: String
 )
 
-fun PlayerDTO.toPlayer(): Player {
+fun PlayerDTO.toPlayer(id: String): Player {
     return Player(
         summonerName = summonerName,
         matchHistoryUri = matchHistoryUri,
         platformId = platformId,
         profileIcon = profileIcon,
         summonerId = summonerId,
-        accountId = accountId
+        accountId = accountId,
+        user = id == accountId
     )
 }

@@ -8,9 +8,9 @@ data class TeamBansDTO(
     val championId: Int
 )
 
-fun TeamBansDTO.toTeamBans(champions: List<Champion>): TeamBans {
+fun TeamBansDTO.toTeamBans(champions: List<Champion>?): TeamBans {
     return TeamBans(
         pickTurn = pickTurn,
-        champion = champions.find { it.key == championId.toString() }
+        champion = champions?.find { it.key == championId.toString() }
     )
 }

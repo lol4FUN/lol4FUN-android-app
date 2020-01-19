@@ -7,9 +7,9 @@ data class ParticipantIdentityDTO(
     val participantId: Int
 )
 
-fun ParticipantIdentityDTO.toParticipantIdentity(): ParticipantIdentity {
+fun ParticipantIdentityDTO.toParticipantIdentity(id: String): ParticipantIdentity {
     return ParticipantIdentity(
-        player = player.toPlayer(),
+        player = player.toPlayer(id),
         id = participantId
     )
 }
