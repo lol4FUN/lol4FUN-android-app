@@ -111,8 +111,6 @@ class ProfileFragment : Fragment() {
                 else
                     FIELD_USER_COLOR_PREFERENCE_LIGHT
             )
-
-            viewModel.onFailureSaveInfoData.value
         }
     }
 
