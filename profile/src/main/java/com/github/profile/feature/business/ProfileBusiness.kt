@@ -51,4 +51,14 @@ class ProfileBusiness(
         return repository.getAuthTask(profileUpdate)
     }
 
+    fun saveColorPreferenceFirestore(colorPreference: Long) {
+        val userReference = repository.getUserReference()
+
+        Tasks.await(
+            userReference.update(
+                FIELD_USER_COLOR_PREFERENCE, colorPreference
+            )
+        )
+    }
+
 }

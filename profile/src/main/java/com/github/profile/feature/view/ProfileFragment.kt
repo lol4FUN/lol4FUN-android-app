@@ -104,6 +104,15 @@ class ProfileFragment : Fragment() {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+
+            viewModel.saveColorPreferenceFirestore(
+                if (isChecked)
+                    FIELD_USER_COLOR_PREFERENCE_DARK
+                else
+                    FIELD_USER_COLOR_PREFERENCE_LIGHT
+            )
+
+            viewModel.onFailureSaveInfoData.value
         }
     }
 

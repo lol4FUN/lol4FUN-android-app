@@ -41,4 +41,10 @@ class ProfileViewModel : BaseViewModel(), ProfileListener {
         onSuccessSaveInfoData.postValue(R.string.data_saved_successfully)
     }
 
+    fun saveColorPreferenceFirestore(colorPreference: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            business.saveColorPreferenceFirestore(colorPreference)
+        }
+    }
+
 }
