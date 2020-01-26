@@ -47,18 +47,30 @@ class HomeAdapter(
 
                     var path = "${BASE_URL_SQUARE_ASSET}${user.champion?.image?.full}"
                     ivChampion.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item0?.image?.full}"
-                    ivItem01.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item1?.image?.full}"
-                    ivItem02.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item2?.image?.full}"
-                    ivItem03.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item3?.image?.full}"
-                    ivItem04.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item4?.image?.full}"
-                    ivItem05.setImageDownload(context, path)
-                    path = "${BASE_URL_ITEM_ASSET}${stats.item5?.image?.full}"
-                    ivItem06.setImageDownload(context, path)
+                    stats.item0?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem01.setImageDownload(context, path)
+                    }
+                    stats.item1?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem02.setImageDownload(context, path)
+                    }
+                    stats.item2?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem03.setImageDownload(context, path)
+                    }
+                    stats.item3?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem04.setImageDownload(context, path)
+                    }
+                    stats.item4?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem05.setImageDownload(context, path)
+                    }
+                    stats.item5?.let {
+                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                        ivItem06.setImageDownload(context, path)
+                    }
                 }
             }
         }

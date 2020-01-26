@@ -2,10 +2,10 @@ package com.github.lol4fun.core.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.lang.NumberFormatException
 
 @Parcelize
 data class Item(
-    val id: Int,
     val description: String,
     val gold: Gold,
     val image: Image,
@@ -13,3 +13,9 @@ data class Item(
     val plaintext: String,
     val tags: List<String>
 ): Parcelable
+
+fun Item.getId(): Int {
+    return try {
+        image.full.removeRange(4..7).toInt()
+    } catch (e: NumberFormatException) { 0 }
+}

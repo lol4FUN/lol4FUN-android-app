@@ -34,7 +34,7 @@ class ConstantsUtil {
         const val BASE_URL_SQUARE_ASSET = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/img/champion/"
         const val BASE_URL_ITEM_ASSET = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/img/item/"
         const val HEADER_RIOT_TOKEN_NAME = "X-Riot-Token"
-        const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-3995ecff-9678-44cf-bef5-2490a88aa08c"
+        const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-e7728eba-da4a-4a56-9636-8f529be52384"
     }
 
     object Error {

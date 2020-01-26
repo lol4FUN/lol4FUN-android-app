@@ -7,7 +7,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class X2419(
-    val id: Int = 2419,
     val description: String,
     val gold: Gold,
     val image: Image,

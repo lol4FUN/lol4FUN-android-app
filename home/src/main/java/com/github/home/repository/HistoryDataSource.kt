@@ -26,17 +26,20 @@ class HistoryDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Match>
     ) {
-        val matches = mutableListOf<Match>()
+        val matches = mutableMapOf<Long, Match?>()
         val job = scope.launch {
             val summoner = business.getUserFirestore()
             val start = 0
-            val end = start + PAGE_SIZE - 1
+            val end = start + PAGE_SIZE
 
             summoner?.accountId?.let { id ->
                 business.getHistory(id, start, end) { matchList ->
                     totalGames = matchList.totalGames
                     matchList.matches.map { ref ->
-                        launch { business.getDetailMatch(ref.gameId)?.let { matches.add(it) } }
+                        matches[ref.gameId] = null
+                        launch {
+                            business.getDetailMatch(ref.gameId)?.let { matches[it.gameId] = it }
+                        }
                     }
                 }
             }
@@ -44,16 +47,16 @@ class HistoryDataSource(
 
         job.invokeOnCompletion {
             business.setHomeEndLoading()
-            callback.onResult(matches, null, PAGE_SIZE)
+            callback.onResult(matches.values.toList(), null, PAGE_SIZE)
         }
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Match>) {
         val start = params.key
-        val end = if (start + params.key - 1 <= totalGames) {
-            start + params.key - 1
+        val end = if (start + params.key <= totalGames) {
+            start + params.key
         } else totalGames
-        val matches = mutableListOf<Match>()
+        val matches = mutableMapOf<Long, Match?>()
 
         val job = scope.launch {
             val summoner = business.getUserFirestore()
@@ -61,7 +64,8 @@ class HistoryDataSource(
             summoner?.accountId?.let { id ->
                 business.getHistory(id, start, end) { matchList ->
                     matchList.matches.map { ref ->
-                        launch { business.getDetailMatch(ref.gameId)?.let { matches.add(it) } }
+                        matches[ref.gameId] = null
+                        launch { business.getDetailMatch(ref.gameId)?.let { matches[it.gameId] = it } }
                     }
                 }
             }
@@ -69,7 +73,7 @@ class HistoryDataSource(
 
         job.invokeOnCompletion {
             business.setHomeEndLoading()
-            callback.onResult(matches, start + params.key)
+            callback.onResult(matches.values.toList(), start + params.key)
         }
     }
 

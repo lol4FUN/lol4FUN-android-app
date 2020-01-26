@@ -15,6 +15,7 @@ import org.koin.core.inject
 
 class HomeBusiness(private val listener: HomeBusinessListener?) : BaseBusiness() {
     private var champions: List<Champion>? = null
+    private var items: List<Item>? = null
     private var accountId = ""
     private val repository: HomeRepository by inject()
 
@@ -71,7 +72,7 @@ class HomeBusiness(private val listener: HomeBusinessListener?) : BaseBusiness()
     suspend fun getDetailMatch(gameId: Long): Match? {
         val result = repository.getDetailMatchById(gameId)
         if (champions == null) champions = getChampions()
-        val items = getItems()
+        if (items == null) items = getItems()
 
         return when (result.status) {
             Status.ERROR -> {

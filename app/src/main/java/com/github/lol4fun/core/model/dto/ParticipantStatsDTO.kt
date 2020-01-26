@@ -2,6 +2,7 @@ package com.github.lol4fun.core.model.dto
 
 import com.github.lol4fun.core.model.Item
 import com.github.lol4fun.core.model.ParticipantStats
+import com.github.lol4fun.core.model.getId
 
 data class ParticipantStatsDTO(
     val assists: Int,
@@ -129,13 +130,13 @@ fun ParticipantStatsDTO.toParticipantStats(items: List<Item>?): ParticipantStats
         goldEarned,
         goldSpent,
         inhibitorKills,
-        items?.find { it.id == item0 },
-        items?.find { it.id == item1 },
-        items?.find { it.id == item2 },
-        items?.find { it.id == item3 },
-        items?.find { it.id == item4 },
-        items?.find { it.id == item5 },
-        items?.find { it.id == item6 },
+        items?.find { it.getId() == item0 },
+        items?.find { it.getId() == item1 },
+        items?.find { it.getId() == item2 },
+        items?.find { it.getId() == item3 },
+        items?.find { it.getId() == item4 },
+        items?.find { it.getId() == item5 },
+        items?.find { it.getId() == item6 },
         killingSprees,
         kills,
         largestCriticalStrike,
