@@ -1,7 +1,10 @@
 package com.github.lol4fun.extensions
 
 import com.github.lol4fun.core.model.Champion
+import com.github.lol4fun.core.model.Item
+import com.github.lol4fun.core.model.Items
 import com.github.lol4fun.core.model.dto.ChampionsDTO
+import com.github.lol4fun.core.model.dto.ItemsDTO
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -21,6 +24,10 @@ fun <T> T.toChampionGenericObject(): Champion {
     return convert()
 }
 
+fun <T> T.toItemGenericObject(): Item {
+    return convert()
+}
+
 //convert an object of type I to type O
 inline fun <I, reified O> I.convert(): O {
     val json = gson.toJson(this)
@@ -36,5 +43,17 @@ fun Map<String, Any>.toChampionsDTO(): ChampionsDTO {
 
     return ChampionsDTO(
         champions = championsList
+    )
+}
+
+fun Map<String, Any>.toItemsDTO(): ItemsDTO {
+    val itemsList = arrayListOf<Any>()
+
+    this.forEach {
+        itemsList.add(it.value)
+    }
+
+    return ItemsDTO(
+        items = itemsList
     )
 }

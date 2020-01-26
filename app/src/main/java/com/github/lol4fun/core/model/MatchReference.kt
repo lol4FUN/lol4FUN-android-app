@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MatchReference(
-    val lane: Int,
+    val lane: String,
     val gameId: Long,
     val champion: Champion?,
     val date: String

@@ -1,5 +1,6 @@
 package com.github.lol4fun.core.model.dto
 
+import com.github.lol4fun.core.model.Item
 import com.github.lol4fun.core.model.ParticipantStats
 
 data class ParticipantStatsDTO(
@@ -109,7 +110,7 @@ data class ParticipantStatsDTO(
     val win: Boolean
 )
 
-fun ParticipantStatsDTO.toParticipantStats(): ParticipantStats {
+fun ParticipantStatsDTO.toParticipantStats(items: List<Item>?): ParticipantStats {
     return ParticipantStats(
         assists,
         champLevel,
@@ -128,13 +129,13 @@ fun ParticipantStatsDTO.toParticipantStats(): ParticipantStats {
         goldEarned,
         goldSpent,
         inhibitorKills,
-        item0,
-        item1,
-        item2,
-        item3,
-        item4,
-        item5,
-        item6,
+        items?.find { it.id == item0 },
+        items?.find { it.id == item1 },
+        items?.find { it.id == item2 },
+        items?.find { it.id == item3 },
+        items?.find { it.id == item4 },
+        items?.find { it.id == item5 },
+        items?.find { it.id == item6 },
         killingSprees,
         kills,
         largestCriticalStrike,

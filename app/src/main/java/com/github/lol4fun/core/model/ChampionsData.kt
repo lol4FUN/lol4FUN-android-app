@@ -5,7 +5,7 @@ import com.github.lol4fun.core.model.champions.*
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Data(
+data class ChampionsData(
     val Aatrox: Aatrox,
     val Ahri: Ahri,
     val Akali: Akali,

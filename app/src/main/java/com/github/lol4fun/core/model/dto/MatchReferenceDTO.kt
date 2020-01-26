@@ -13,14 +13,10 @@ data class MatchReferenceDTO(
 
 fun MatchReferenceDTO.toMatchReference(champions: List<Champion>?): MatchReference {
     return MatchReference(
-        lane = setLaneByName(lane),
+        lane = lane,
         gameId = gameId,
         champion = champions?.find { it.key == champion.toString() },
         date = timestamp.toDateString()
     )
-}
-
-private fun setLaneByName(name: String): Int {
-    return 1
 }
 

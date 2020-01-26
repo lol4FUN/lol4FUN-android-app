@@ -60,4 +60,10 @@ open class BaseRepository {
             call = { apiDDragon.getChampionsAsync() }
         )
     }
+
+    suspend fun getItems(): Resource {
+        return safeApiCall(
+            call = { apiDDragon.getItemsAsync() }
+        )
+    }
 }

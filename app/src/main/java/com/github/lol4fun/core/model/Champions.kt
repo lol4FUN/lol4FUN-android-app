@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Champions(
-    val `data`: Data,
+    val `data`: ChampionsData,
     val format: String,
     val type: String,
     val version: String
