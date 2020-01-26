@@ -4,10 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.home.R
+import com.github.lol4fun.core.model.Item
 import com.github.lol4fun.core.model.Match
+import com.github.lol4fun.core.model.ParticipantStats
 import com.github.lol4fun.extensions.setImageDownload
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_ITEM_ASSET
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
@@ -44,35 +48,23 @@ class HomeAdapter(
                     val kda = "${stats.kills}/${stats.deaths}/${stats.assists}"
 
                     tvKDA.text = kda
-
-                    var path = "${BASE_URL_SQUARE_ASSET}${user.champion?.image?.full}"
+                    val path = "${BASE_URL_SQUARE_ASSET}${user.champion?.image?.full}"
                     ivChampion.setImageDownload(context, path)
-                    stats.item0?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem01.setImageDownload(context, path)
-                    }
-                    stats.item1?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem02.setImageDownload(context, path)
-                    }
-                    stats.item2?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem03.setImageDownload(context, path)
-                    }
-                    stats.item3?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem04.setImageDownload(context, path)
-                    }
-                    stats.item4?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem05.setImageDownload(context, path)
-                    }
-                    stats.item5?.let {
-                        path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
-                        ivItem06.setImageDownload(context, path)
-                    }
+                    setImage(context, stats.item0, ivItem01)
+                    setImage(context, stats.item1, ivItem02)
+                    setImage(context, stats.item2, ivItem03)
+                    setImage(context, stats.item3, ivItem04)
+                    setImage(context, stats.item4, ivItem05)
+                    setImage(context, stats.item5, ivItem06)
                 }
             }
+        }
+
+        private fun setImage(context: Context?, item: Item?, view: ImageView) {
+            item?.let {
+                val path = "${BASE_URL_ITEM_ASSET}${it.image.full}"
+                view.setImageDownload(context, path)
+            } ?: run { view.setImageResource(R.drawable.ic_image_default) }
         }
     }
 }

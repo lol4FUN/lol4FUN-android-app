@@ -66,6 +66,6 @@ class ConstantsUtil {
     }
 
     object Home {
-        const val PAGE_SIZE = 20
+        const val PAGE_SIZE = 10
     }
 }
