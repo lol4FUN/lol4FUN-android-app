@@ -27,6 +27,7 @@ class HistoryDataSource(
         callback: LoadInitialCallback<Int, Match>
     ) {
         val matches = mutableMapOf<Long, Match?>()
+        business.setHomeLoading(true)
         val job = scope.launch {
             val summoner = business.getUserFirestore()
             val start = 0
@@ -46,18 +47,18 @@ class HistoryDataSource(
         }
 
         job.invokeOnCompletion {
-            business.setHomeEndLoading()
+            business.setHomeLoading(false)
             callback.onResult(matches.values.toList(), null, PAGE_SIZE)
         }
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Match>) {
         val start = params.key
-        val end = if (start + params.key <= totalGames) {
-            start + params.key
+        val end = if (start + PAGE_SIZE <= totalGames) {
+            start + PAGE_SIZE
         } else totalGames
         val matches = mutableMapOf<Long, Match?>()
-
+        business.setHomeLoading(true)
         val job = scope.launch {
             val summoner = business.getUserFirestore()
 
@@ -72,8 +73,8 @@ class HistoryDataSource(
         }
 
         job.invokeOnCompletion {
-            business.setHomeEndLoading()
-            callback.onResult(matches.values.toList(), start + params.key)
+            business.setHomeLoading(false)
+            callback.onResult(matches.values.toList(), end)
         }
     }
 

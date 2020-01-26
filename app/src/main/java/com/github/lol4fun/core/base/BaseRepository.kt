@@ -12,7 +12,6 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Response
-import java.lang.Exception
 
 open class BaseRepository {
 

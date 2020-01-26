@@ -6,7 +6,7 @@ interface HomeBusinessListener {
 
     fun onCurrentGameStatus(currentGame: CurrentGameInfo?, inCurrentGame: Boolean)
 
-    fun setHistoryEndLoading()
+    fun setHistoryLoading(isLoading: Boolean)
 
     fun onDefaultError(error: String?)
 }

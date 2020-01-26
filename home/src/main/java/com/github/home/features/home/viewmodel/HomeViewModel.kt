@@ -68,8 +68,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
         } else _notInCurrentGame.postValue(true)
     }
 
-    override fun setHistoryEndLoading() {
-        _spinner.postValue(false)
+    override fun setHistoryLoading(isLoading: Boolean) {
+        _spinner.postValue(isLoading)
     }
 
     override fun onDefaultError(error: String?) {

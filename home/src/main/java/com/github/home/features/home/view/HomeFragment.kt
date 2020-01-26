@@ -85,7 +85,6 @@ class HomeFragment : Fragment() {
         adapter.itemClicked = { activity?.showToast(it.gameId.toString()) }
         rvHistoryMatches.layoutManager = LinearLayoutManager(context)
         rvHistoryMatches.adapter = adapter
-        ViewCompat.setNestedScrollingEnabled(rvHistoryMatches, false)
     }
 
     private fun setupCurrentGame(currentGame: CurrentGameInfo) {

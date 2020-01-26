@@ -65,8 +65,8 @@ class HomeBusiness(private val listener: HomeBusinessListener?) : BaseBusiness()
         }
     }
 
-    fun setHomeEndLoading() {
-        listener?.setHistoryEndLoading()
+    fun setHomeLoading(isLoading: Boolean) {
+        listener?.setHistoryLoading(isLoading)
     }
 
     suspend fun getDetailMatch(gameId: Long): Match? {
