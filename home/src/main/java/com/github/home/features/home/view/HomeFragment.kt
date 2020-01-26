@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +13,9 @@ import com.github.home.adapter.HomeAdapter
 import com.github.home.di.HomeDependencyInjection
 import com.github.home.features.home.viewmodel.HomeViewModel
 import com.github.lol4fun.core.model.CurrentGameInfo
+import com.github.lol4fun.extensions.setImageDownload
 import com.github.lol4fun.extensions.showToast
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
-import com.github.lol4fun.util.GlideApp
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +24,6 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: HomeAdapter
     private lateinit var currentGame: CurrentGameInfo
-    private var encryptedSummonerId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
     private fun setupObservables() {
         viewModel.spinner.observe(viewLifecycleOwner, Observer { spinner ->
-            spinner?.let { srlHome.isRefreshing = it }
+            spinner?.let { pbHomeLoading.visibility = if (it) View.VISIBLE else View.GONE }
         })
 
         viewModel.alertMessage.observe(viewLifecycleOwner, Observer { message ->
@@ -59,8 +59,7 @@ class HomeFragment : Fragment() {
 
         viewModel.summoner.observe(viewLifecycleOwner, Observer { summoner ->
             summoner?.id?.let {
-                encryptedSummonerId = it
-                viewModel.fetchHomeData(encryptedSummonerId)
+                viewModel.fetchHomeData(it)
             } ?: run { /* Get summoner name */ }
         })
 
@@ -78,11 +77,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        srlHome.setOnRefreshListener {
-            if (encryptedSummonerId.isNotBlank()) {
-                viewModel.fetchHomeData(encryptedSummonerId)
-            }
-        }
         btCurrentGame.setOnClickListener { /* Go To next fragment sending currentGame */ }
     }
 
@@ -91,17 +85,14 @@ class HomeFragment : Fragment() {
         adapter.itemClicked = { activity?.showToast(it.gameId.toString()) }
         rvHistoryMatches.layoutManager = LinearLayoutManager(context)
         rvHistoryMatches.adapter = adapter
+        ViewCompat.setNestedScrollingEnabled(rvHistoryMatches, false)
     }
 
     private fun setupCurrentGame(currentGame: CurrentGameInfo) {
-        currentGame.also { currentGameInfo ->
-            this.currentGame = currentGameInfo
-            currentGameInfo.participants.find { it.summonerName == "" }?.champion?.let { champion ->
-                GlideApp
-                    .with(this)
-                    .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
-                    .into(ivHomeChampion)
-            }
+        this.currentGame = currentGame
+        currentGame.participants.find { it.summonerName == "" }?.champion?.let { champion ->
+            val path = "${BASE_URL_SQUARE_ASSET}${champion.image?.full}"
+            ivHomeChampion.setImageDownload(this.context, path)
         }
     }
 

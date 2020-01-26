@@ -1,6 +1,5 @@
 package com.github.home.repository
 
-import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.github.home.features.home.business.HomeBusiness
 import com.github.lol4fun.core.model.Match
@@ -12,7 +11,6 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import kotlin.coroutines.CoroutineContext
-import kotlin.system.measureTimeMillis
 
 class HistoryDataSource(
     context: CoroutineContext
@@ -29,36 +27,24 @@ class HistoryDataSource(
         callback: LoadInitialCallback<Int, Match>
     ) {
         val matches = mutableListOf<Match>()
-        var totalTime = 0L
-        val parentJob = scope.launch {
-            totalTime = measureTimeMillis {
-                val summoner = business.getUserFirestore()
-                val start = 0
-                val end = start + PAGE_SIZE - 1
+        val job = scope.launch {
+            val summoner = business.getUserFirestore()
+            val start = 0
+            val end = start + PAGE_SIZE - 1
 
-                summoner?.accountId?.let { id ->
-                    business.getHistory(id, start, end) { matchList ->
-                        totalGames = matchList.totalGames
-                        matchList.matches.map { reference ->
-                            var time = 0L
-                            val job = launch {
-                                time = measureTimeMillis {
-                                    business.getDetailMatch(reference.gameId)?.let { item ->
-                                        matches.add(item)
-                                    }
-                                }
-                            }
-                            job.invokeOnCompletion {
-                                Log.d("DEBUG", "Complete this job in $time")
-                            }
-                        }
+            summoner?.accountId?.let { id ->
+                business.getHistory(id, start, end) { matchList ->
+                    totalGames = matchList.totalGames
+                    matchList.matches.map { ref ->
+                        launch { business.getDetailMatch(ref.gameId)?.let { matches.add(it) } }
                     }
                 }
             }
         }
-        parentJob.invokeOnCompletion {
+
+        job.invokeOnCompletion {
+            business.setHomeEndLoading()
             callback.onResult(matches, null, PAGE_SIZE)
-            Log.d("DEBUG", "Complete TOTAL job in $totalTime")
         }
     }
 
@@ -69,22 +55,20 @@ class HistoryDataSource(
         } else totalGames
         val matches = mutableListOf<Match>()
 
-        val parentJob = scope.launch {
+        val job = scope.launch {
             val summoner = business.getUserFirestore()
 
             summoner?.accountId?.let { id ->
                 business.getHistory(id, start, end) { matchList ->
-                    matchList.matches.map { reference ->
-                        launch {
-                            business.getDetailMatch(reference.gameId)?.let { item ->
-                                matches.add(item)
-                            }
-                        }
+                    matchList.matches.map { ref ->
+                        launch { business.getDetailMatch(ref.gameId)?.let { matches.add(it) } }
                     }
                 }
             }
         }
-        parentJob.invokeOnCompletion {
+
+        job.invokeOnCompletion {
+            business.setHomeEndLoading()
             callback.onResult(matches, start + params.key)
         }
     }

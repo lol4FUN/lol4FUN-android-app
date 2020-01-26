@@ -8,6 +8,7 @@
     <dimen name="xdefaultMargin">12dp</dimen>
     <dimen name="minimumMargin">8dp</dimen>
     <dimen name="xminimumMargin">4dp</dimen>
+    <dimen name="xxminimumMargin">2dp</dimen>
 
     <dimen name="default_title_size">28sp</dimen>
     <dimen name="default_subtitle_size">14sp</dimen>

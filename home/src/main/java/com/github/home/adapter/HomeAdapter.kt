@@ -4,13 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.home.R
 import com.github.lol4fun.core.model.Match
+import com.github.lol4fun.extensions.setImageDownload
+import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_ITEM_ASSET
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_SQUARE_ASSET
-import com.github.lol4fun.util.GlideApp
 import kotlinx.android.synthetic.main.adapter_home.view.*
 
 class HomeAdapter(
@@ -40,21 +40,25 @@ class HomeAdapter(
             itemView.apply {
                 val dataPlayer = data.participant.find { it.player.user }
                 data.participants.find { it.participantId == dataPlayer?.id }?.let { user ->
-                    val kda =
-                        "${user.stats.kills}/${user.stats.deaths}/${user.stats.assists}"
-                    tvKDA.text = kda
-                    user.champion?.let { champion ->
-                        context?.let {
-                            data.lane?.let { lane ->
-                                ivPosition.background = ContextCompat.getDrawable(it, lane)
-                            }
+                    val stats = user.stats
+                    val kda = "${stats.kills}/${stats.deaths}/${stats.assists}"
 
-                            GlideApp
-                                .with(it)
-                                .load("${BASE_URL_SQUARE_ASSET}${champion.image?.full}")
-                                .into(ivChampion)
-                        }
-                    }
+                    tvKDA.text = kda
+
+                    var path = "${BASE_URL_SQUARE_ASSET}${user.champion?.image?.full}"
+                    ivChampion.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item0?.image?.full}"
+                    ivItem01.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item1?.image?.full}"
+                    ivItem02.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item2?.image?.full}"
+                    ivItem03.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item3?.image?.full}"
+                    ivItem04.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item4?.image?.full}"
+                    ivItem05.setImageDownload(context, path)
+                    path = "${BASE_URL_ITEM_ASSET}${stats.item5?.image?.full}"
+                    ivItem06.setImageDownload(context, path)
                 }
             }
         }

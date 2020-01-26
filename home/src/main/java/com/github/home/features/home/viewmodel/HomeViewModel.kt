@@ -62,12 +62,14 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     }
 
     override fun onCurrentGameStatus(currentGame: CurrentGameInfo?, inCurrentGame: Boolean) {
-        _spinner.postValue(false)
-
         if (inCurrentGame) {
             _currentGame.postValue(currentGame)
             _notInCurrentGame.postValue(false)
         } else _notInCurrentGame.postValue(true)
+    }
+
+    override fun setHistoryEndLoading() {
+        _spinner.postValue(false)
     }
 
     override fun onDefaultError(error: String?) {

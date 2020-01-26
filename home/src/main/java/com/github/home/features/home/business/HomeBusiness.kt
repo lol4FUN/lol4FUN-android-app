@@ -8,9 +8,7 @@ import com.github.lol4fun.core.model.dto.MatchDTO
 import com.github.lol4fun.core.model.dto.MatchListDTO
 import com.github.lol4fun.core.model.dto.toMatch
 import com.github.lol4fun.core.model.dto.toMatchList
-import com.github.lol4fun.extensions.serializeToMap
-import com.github.lol4fun.extensions.toChampionGenericObject
-import com.github.lol4fun.extensions.toChampionsDTO
+import com.github.lol4fun.extensions.*
 import com.github.lol4fun.util.ConstantsUtil.Error.ERROR_DEFAULT
 import org.koin.core.inject
 
@@ -66,9 +64,14 @@ class HomeBusiness(private val listener: HomeBusinessListener?) : BaseBusiness()
         }
     }
 
+    fun setHomeEndLoading() {
+        listener?.setHistoryEndLoading()
+    }
+
     suspend fun getDetailMatch(gameId: Long): Match? {
         val result = repository.getDetailMatchById(gameId)
         if (champions == null) champions = getChampions()
+        val items = getItems()
 
         return when (result.status) {
             Status.ERROR -> {
@@ -79,11 +82,30 @@ class HomeBusiness(private val listener: HomeBusinessListener?) : BaseBusiness()
                 val matchDTO = result.data as? MatchDTO
 
                 return matchDTO?.let {
-                    return it.toMatch(champions, null, accountId)
+                    return it.toMatch(
+                        champions = champions,
+                        items = items,
+                        id = accountId
+                    )
                 } ?: run {
                     listener?.onDefaultError(ERROR_DEFAULT)
                     return null
                 }
+            }
+        }
+    }
+
+    private suspend fun getItems(): List<Item>? {
+        val result = repository.getItems()
+
+        return when (result.status) {
+            Status.ERROR -> {
+                listener?.onDefaultError(error = result.message ?: ERROR_DEFAULT)
+                null
+            }
+            Status.SUCCESS -> {
+                val itemsMap = (result.data as? Items)?.data.serializeToMap()
+                return itemsMap.toItemsDTO().items.map { it.toItemGenericObject() }
             }
         }
     }
