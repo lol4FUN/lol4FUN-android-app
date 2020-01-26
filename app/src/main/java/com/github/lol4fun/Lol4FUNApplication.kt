@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import java.util.*
 
 class Lol4FUNApplication: Application() {
 
@@ -32,7 +33,7 @@ class Lol4FUNApplication: Application() {
         val auth = FirebaseAuth.getInstance()
         val docRef = db
             .collection(ConstantsUtil.FirestoreDataBaseNames.DATABASE_CUSTOMERS)
-            .document(auth.currentUser?.uid ?: "")
+            .document(auth.currentUser?.uid ?: UUID.randomUUID().toString())
 
         // Source can be CACHE, SERVER, or DEFAULT.
         val source = Source.CACHE
