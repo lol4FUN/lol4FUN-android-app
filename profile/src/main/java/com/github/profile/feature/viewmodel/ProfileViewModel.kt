@@ -47,4 +47,8 @@ class ProfileViewModel : BaseViewModel(), ProfileListener {
         }
     }
 
+    fun isAnonymous(): Boolean? {
+        return business.isAnonymous()
+    }
+
 }

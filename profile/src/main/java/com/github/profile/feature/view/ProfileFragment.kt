@@ -44,17 +44,25 @@ class ProfileFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        val customer = viewModel.onSuccessGetUserFirestore.value
+        val isAnonymous = viewModel.isAnonymous()
 
-        if (customer == null) {
-            viewModel.getUserFirestore()
-            setupObservableGetUserFirestore()
+        if (isAnonymous == true) {
+            pbProfileLoading.visibility = View.GONE
+            vgProfileContent.visibility = View.GONE
+            vgProfileContentAnonymous.visibility = View.VISIBLE
         } else {
-            fillUserInfo(customer)
-            setupVisibilityMainContent()
-        }
+            val customer = viewModel.onSuccessGetUserFirestore.value
 
-        setupObservables()
+            if (customer == null) {
+                viewModel.getUserFirestore()
+                setupObservableGetUserFirestore()
+            } else {
+                fillUserInfo(customer)
+                setupVisibilityMainContent()
+            }
+
+            setupObservables()
+        }
     }
 
     private fun setupVisibilityMainContent(){

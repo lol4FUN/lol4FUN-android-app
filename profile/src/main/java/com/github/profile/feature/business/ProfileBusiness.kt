@@ -61,4 +61,8 @@ class ProfileBusiness(
         )
     }
 
+    fun isAnonymous(): Boolean? {
+        return repository.auth.currentUser?.isAnonymous
+    }
+
 }
