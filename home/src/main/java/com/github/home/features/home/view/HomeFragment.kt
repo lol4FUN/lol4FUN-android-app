@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
         viewModel.summoner.observe(viewLifecycleOwner, Observer { summoner ->
             summoner?.id?.let {
                 viewModel.fetchHomeData(it)
-            } ?: run { /* Get summoner name */ }
+            }
         })
 
         viewModel.history.observe(viewLifecycleOwner, Observer { list ->
