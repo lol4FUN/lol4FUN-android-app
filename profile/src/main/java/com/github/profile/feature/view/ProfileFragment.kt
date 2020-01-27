@@ -28,7 +28,6 @@ import com.github.lol4fun.util.GlideApp
 import com.github.profile.R
 import com.github.profile.di.ProfileDependencyInjection
 import com.github.profile.feature.viewmodel.ProfileViewModel
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
