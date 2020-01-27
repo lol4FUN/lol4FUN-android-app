@@ -13,7 +13,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.github.lol4fun"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -54,9 +54,9 @@ dependencies {
 
     //firebase
     implementation "com.google.firebase:firebase-analytics:${versions.firebaseAnalytics}"
-    implementation "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
-    implementation "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
-    implementation "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
+    api "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
+    api "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
+    api "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
 
     //core
     api "androidx.appcompat:appcompat:${versions.appCompat}"
@@ -87,7 +87,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //Navigation
-//    api "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
     api "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
