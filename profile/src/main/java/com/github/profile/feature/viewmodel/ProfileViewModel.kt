@@ -8,6 +8,7 @@ import com.github.lol4fun.core.model.Customer
 import com.github.profile.R
 import com.github.profile.feature.business.ProfileBusiness
 import com.github.profile.feature.listener.ProfileListener
+import com.google.firebase.auth.AuthCredential
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.inject
@@ -58,6 +59,10 @@ class ProfileViewModel : BaseViewModel(), ProfileListener {
 
     fun saveUserFirestore() {
         business.saveUserFirestore()
+    }
+
+    fun signInWithCredential(authCredential: AuthCredential) {
+        business.signInWithCredential(authCredential)
     }
 
 }

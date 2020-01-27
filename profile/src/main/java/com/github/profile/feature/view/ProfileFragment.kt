@@ -187,18 +187,18 @@ class ProfileFragment : Fragment() {
                 if (response == null) {
                     return
                 } else if (response.error?.errorCode == ErrorCodes.ANONYMOUS_UPGRADE_MERGE_CONFLICT) {
-                    // Get the non-anoymous credential from the response
-                    val nonAnonymousCredential = response.credentialForLinking
-                    // Sign in with credential
-                    nonAnonymousCredential?.let {
-                        FirebaseAuth.getInstance().signInWithCredential(nonAnonymousCredential)
-                            .addOnSuccessListener {
-                                // Copy over anonymous user data to signed in user
-                                return@addOnSuccessListener
-                            }
-                    }
+                    signInWithCredential(response)
                 }
             }
+        }
+    }
+
+    private fun signInWithCredential(response: IdpResponse) {
+        // Get the non-anoymous credential from the response
+        val nonAnonymousCredential = response.credentialForLinking
+        // Sign in with credential
+        nonAnonymousCredential?.let { authCredential ->
+            viewModel.signInWithCredential(authCredential)
         }
     }
 }

@@ -9,6 +9,7 @@ import com.github.profile.feature.listener.ProfileListener
 import com.github.profile.repository.ProfileRepository
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.UserProfileChangeRequest
 import org.koin.core.inject
 
@@ -67,6 +68,10 @@ class ProfileBusiness(
 
     fun saveUserFirestore() {
         repository.saveUserFirestore()
+    }
+
+    fun signInWithCredential(authCredential: AuthCredential) {
+        repository.auth.signInWithCredential(authCredential)
     }
 
 }
