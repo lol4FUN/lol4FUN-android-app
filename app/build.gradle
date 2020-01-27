@@ -54,7 +54,7 @@ dependencies {
 
     //firebase
     implementation "com.google.firebase:firebase-analytics:${versions.firebaseAnalytics}"
-    implementation "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
+    api "com.firebaseui:firebase-ui-auth:${versions.firebaseUIAuth}"
     api "com.google.firebase:firebase-auth:${versions.firebaseAuth}"
     api "com.google.firebase:firebase-firestore-ktx:${versions.firebaseFirestore}"
 
@@ -87,7 +87,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //Navigation
-//    api "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
     api "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
