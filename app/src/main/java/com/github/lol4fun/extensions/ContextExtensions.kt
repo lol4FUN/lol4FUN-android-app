@@ -18,6 +18,10 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
+fun Context.showToast(resourceId: Int) {
+    Toast.makeText(this, getString(resourceId), Toast.LENGTH_SHORT).show()
+}
+
 fun Context.hideKeyboard(view: View?) {
     view?.let {
         it.clearFocus()

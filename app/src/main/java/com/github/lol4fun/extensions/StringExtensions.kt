@@ -3,6 +3,7 @@ package com.github.lol4fun.extensions
 import com.github.lol4fun.R
 import com.github.lol4fun.core.model.Server
 import com.github.lol4fun.util.ConstantsUtil
+import android.text.Editable
 
 fun String.setServerByCode(): Server? {
     return when (this) {
@@ -19,4 +20,7 @@ fun String.setServerByCode(): Server? {
         ConstantsUtil.Match.LAS_CODE -> Server(this, R.string.las_code, R.string.las_name)
         else -> null
     }
+
+fun String.getTextByEditable(): Editable {
+    return Editable.Factory.getInstance().newEditable(this)
 }
