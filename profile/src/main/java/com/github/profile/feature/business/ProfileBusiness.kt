@@ -65,4 +65,8 @@ class ProfileBusiness(
         return repository.auth.currentUser?.isAnonymous
     }
 
+    fun saveUserFirestore() {
+        repository.saveUserFirestore()
+    }
+
 }

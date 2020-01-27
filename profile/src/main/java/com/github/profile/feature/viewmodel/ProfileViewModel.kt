@@ -2,6 +2,7 @@ package com.github.profile.feature.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.firebase.ui.auth.AuthUI
 import com.github.lol4fun.core.base.BaseViewModel
 import com.github.lol4fun.core.model.Customer
 import com.github.profile.R
@@ -49,6 +50,14 @@ class ProfileViewModel : BaseViewModel(), ProfileListener {
 
     fun isAnonymous(): Boolean? {
         return business.isAnonymous()
+    }
+
+    fun getListOfProviders(): List<AuthUI.IdpConfig> {
+        return business.getListOfProvidersWithoutAnonymous()
+    }
+
+    fun saveUserFirestore() {
+        business.saveUserFirestore()
     }
 
 }
