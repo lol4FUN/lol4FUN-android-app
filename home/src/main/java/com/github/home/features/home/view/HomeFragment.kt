@@ -52,6 +52,10 @@ class HomeFragment : Fragment() {
             spinner?.let { pbHomeLoading.visibility = if (it) View.VISIBLE else View.GONE }
         })
 
+        viewModel.currentGameSpinner.observe(viewLifecycleOwner, Observer { spinner ->
+            spinner?.let { pbCurrentGame.visibility = if (it) View.VISIBLE else View.GONE }
+        })
+
         viewModel.alertMessage.observe(viewLifecycleOwner, Observer { message ->
             message?.let { activity?.showToast(it) }
         })

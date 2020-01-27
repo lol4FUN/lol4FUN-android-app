@@ -20,6 +20,7 @@ import org.koin.core.parameter.parametersOf
 
 class HomeViewModel: BaseViewModel(), HomeBusinessListener {
     private var _spinner = MutableLiveData<Boolean>()
+    private var _currentGameSpinner = MutableLiveData<Boolean>()
     private var _alertMessage = MutableLiveData<String>()
     private var _currentGame = MutableLiveData<CurrentGameInfo>()
     private var _notInCurrentGame = MutableLiveData<Boolean>()
@@ -30,6 +31,8 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
 
     val spinner: LiveData<Boolean>
         get() = _spinner
+    val currentGameSpinner: LiveData<Boolean>
+        get() = _currentGameSpinner
     val alertMessage: LiveData<String>
         get() = _alertMessage
     val currentGame: LiveData<CurrentGameInfo>
@@ -56,12 +59,14 @@ class HomeViewModel: BaseViewModel(), HomeBusinessListener {
 
     fun fetchHomeData(id: String) {
         _spinner.postValue(true)
+        _currentGameSpinner.postValue(true)
         viewModelScope.launch (coroutineContext.IO) {
             business.getCurrentGame(encryptedSummonerId = id)
         }
     }
 
     override fun onCurrentGameStatus(currentGame: CurrentGameInfo?, inCurrentGame: Boolean) {
+        _currentGameSpinner.postValue(false)
         if (inCurrentGame) {
             _currentGame.postValue(currentGame)
             _notInCurrentGame.postValue(false)
