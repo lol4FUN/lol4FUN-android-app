@@ -1,6 +1,5 @@
 package com.github.lol4fun.features.main.business
 
-import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes.*
 import com.github.lol4fun.R
 import com.github.lol4fun.core.base.BaseBusiness
@@ -15,15 +14,6 @@ class MainBusiness: BaseBusiness() {
 
     fun userIsLogged(): Boolean {
         return auth.currentUser != null
-    }
-
-    fun getListOfProviders(): List<AuthUI.IdpConfig> {
-        return listOf(
-            AuthUI.IdpConfig.GoogleBuilder().build(),
-            AuthUI.IdpConfig.FacebookBuilder().build(),
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.AnonymousBuilder().build()
-        )
     }
 
     fun saveUserFirestore() {
