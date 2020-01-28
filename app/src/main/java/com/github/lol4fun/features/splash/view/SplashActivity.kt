@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.github.lol4fun.R
@@ -13,7 +15,6 @@ import com.github.lol4fun.features.splash.viewmodel.SplashViewModel
 import com.github.lol4fun.util.ConstantsUtil
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : AppCompatActivity() {
@@ -24,8 +25,27 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        viewModel.setPreferenceTheme()
+        initObservables()
+    }
 
-        checkIfUserIsLogged()
+    private fun initObservables() {
+        viewModel.isThemeDark.observe(this, Observer { isThemeDark ->
+            isThemeDark?.let { setTheme(it) }
+        })
+
+        viewModel.canCheckLogin.observe(this, Observer { canCheckLogin ->
+            canCheckLogin?.let { checkIfUserIsLogged() }
+        })
+    }
+
+    private fun setTheme(isDarkTheme: Boolean) {
+        if (isDarkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        recreate()
     }
 
     private fun checkIfUserIsLogged() {

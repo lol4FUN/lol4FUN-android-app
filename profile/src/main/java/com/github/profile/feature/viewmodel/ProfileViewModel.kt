@@ -49,20 +49,4 @@ class ProfileViewModel : BaseViewModel(), ProfileListener {
         }
     }
 
-    fun isAnonymous(): Boolean? {
-        return business.isAnonymous()
-    }
-
-    fun getListOfProviders(): List<AuthUI.IdpConfig> {
-        return business.getListOfProvidersWithoutAnonymous()
-    }
-
-    fun saveUserFirestore() {
-        business.saveUserFirestore()
-    }
-
-    fun signInWithCredential(authCredential: AuthCredential) {
-        business.signInWithCredential(authCredential)
-    }
-
 }

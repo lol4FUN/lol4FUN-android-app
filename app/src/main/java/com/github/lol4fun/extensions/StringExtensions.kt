@@ -20,6 +20,7 @@ fun String.setServerByCode(): Server? {
         ConstantsUtil.Match.LAS_CODE -> Server(this, R.string.las_code, R.string.las_name)
         else -> null
     }
+}
 
 fun String.getTextByEditable(): Editable {
     return Editable.Factory.getInstance().newEditable(this)

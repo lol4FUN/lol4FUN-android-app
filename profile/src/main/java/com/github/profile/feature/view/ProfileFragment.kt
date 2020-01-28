@@ -1,7 +1,5 @@
 package com.github.profile.feature.view
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,21 +7,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.ErrorCodes
-import com.firebase.ui.auth.IdpResponse
 import com.github.lol4fun.core.model.Customer
 import com.github.lol4fun.extensions.getTextByEditable
 import com.github.lol4fun.extensions.showSnackBar
 import com.github.lol4fun.extensions.showToast
-import com.github.lol4fun.features.nickname.view.NicknameActivity
 import com.github.lol4fun.util.ConstantsUtil.Api.BASE_URL_PROFILE_ICON
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_DARK
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_COLOR_PREFERENCE_LIGHT
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_NAME
 import com.github.lol4fun.util.ConstantsUtil.FirestoreDataBaseFields.FIELD_USER_SUMMONER_NAME
-import com.github.lol4fun.util.ConstantsUtil.Main.RC_SIGN_IN
 import com.github.lol4fun.util.GlideApp
 import com.github.profile.R
 import com.github.profile.di.ProfileDependencyInjection
@@ -48,29 +41,8 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val isAnonymous = viewModel.isAnonymous()
 
-        if (isAnonymous == true) {
-            pbProfileLoading.visibility = View.GONE
-            vgProfileContent.visibility = View.GONE
-
-            startUpgradeAnonymousAccount()
-        } else {
-            fillUserInformation()
-        }
-    }
-
-    private fun startUpgradeAnonymousAccount() {
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .enableAnonymousUsersAutoUpgrade()
-                .setAvailableProviders(
-                    viewModel.getListOfProviders()
-                )
-                .build(),
-            RC_SIGN_IN
-        )
+        fillUserInformation()
     }
 
     private fun fillUserInformation() {
@@ -141,6 +113,7 @@ class ProfileFragment : Fragment() {
                 else
                     FIELD_USER_COLOR_PREFERENCE_LIGHT
             )
+            activity?.recreate()
         }
     }
 
@@ -170,34 +143,5 @@ class ProfileFragment : Fragment() {
                     else
                         FIELD_USER_COLOR_PREFERENCE_LIGHT
         )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-
-            // Successfully signed in
-            if (resultCode == Activity.RESULT_OK) {
-                viewModel.saveUserFirestore()
-                startActivity(Intent(context, NicknameActivity::class.java))
-            } else {
-                if (response == null) {
-                    return
-                } else if (response.error?.errorCode == ErrorCodes.ANONYMOUS_UPGRADE_MERGE_CONFLICT) {
-                    signInWithCredential(response)
-                }
-            }
-        }
-    }
-
-    private fun signInWithCredential(response: IdpResponse) {
-        // Get the non-anoymous credential from the response
-        val nonAnonymousCredential = response.credentialForLinking
-        // Sign in with credential
-        nonAnonymousCredential?.let { authCredential ->
-            viewModel.signInWithCredential(authCredential)
-        }
     }
 }

@@ -6,12 +6,13 @@ import com.github.lol4fun.features.nickname.business.NicknameBusiness
 import com.github.lol4fun.features.nickname.listener.NicknameListener
 import com.github.lol4fun.features.nickname.viewmodel.NicknameViewModel
 import com.github.lol4fun.features.splash.business.SplashBusiness
+import com.github.lol4fun.features.splash.business.SplashListener
 import com.github.lol4fun.features.splash.viewmodel.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val businessModule = module {
-    single { SplashBusiness() }
+    single { (l: SplashListener ) -> SplashBusiness(l) }
     single { (l: NicknameListener) -> NicknameBusiness(l) }
 }
 

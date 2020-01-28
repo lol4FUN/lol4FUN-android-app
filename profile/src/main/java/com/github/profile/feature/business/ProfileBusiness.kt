@@ -61,17 +61,4 @@ class ProfileBusiness(
             )
         )
     }
-
-    fun isAnonymous(): Boolean? {
-        return repository.auth.currentUser?.isAnonymous
-    }
-
-    fun saveUserFirestore() {
-        repository.saveUserFirestore()
-    }
-
-    fun signInWithCredential(authCredential: AuthCredential) {
-        repository.auth.signInWithCredential(authCredential)
-    }
-
 }

@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:indeterminate="true"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tvNotCurrentGame"
@@ -86,7 +86,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/minimumMargin"
-                    android:layout_marginLeft="@dimen/minimumMargin"
                     android:layout_marginTop="48dp"
                     android:text="@string/header_home"
                     app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-7dp"
         android:indeterminate="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistoryMatches"
