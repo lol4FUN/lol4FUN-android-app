@@ -46,9 +46,11 @@ class SplashViewModel : BaseViewModel(), SplashListener {
         }
     }
 
-    override fun getPreferenceTheme(isDarkTheme: Boolean) {
-        _isDarkTheme.value = isDarkTheme
-        _isDarkTheme.value = null
+    override fun getPreferenceTheme(isDarkTheme: Boolean?) {
+        isDarkTheme?.let {
+            _isDarkTheme.value = it
+            _isDarkTheme.value = null
+        } ?: run { _canCheckLogin.postValue(true) }
     }
 
 

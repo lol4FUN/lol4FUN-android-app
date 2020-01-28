@@ -41,11 +41,20 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setTheme(isDarkTheme: Boolean) {
         if (isDarkTheme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                checkIfUserIsLogged()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                recreate()
+            }
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+                checkIfUserIsLogged()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                recreate()
+            }
         }
-        recreate()
     }
 
     private fun checkIfUserIsLogged() {

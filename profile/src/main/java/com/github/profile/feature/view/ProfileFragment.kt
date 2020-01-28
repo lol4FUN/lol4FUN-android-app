@@ -101,19 +101,24 @@ class ProfileFragment : Fragment() {
         })
 
         swProfileSystemColorPreference.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-
             viewModel.saveColorPreferenceFirestore(
                 if (isChecked)
                     FIELD_USER_COLOR_PREFERENCE_DARK
                 else
                     FIELD_USER_COLOR_PREFERENCE_LIGHT
             )
-            activity?.recreate()
+
+            if (isChecked) {
+                if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    activity?.recreate()
+                }
+            } else {
+                if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    activity?.recreate()
+                }
+            }
         }
     }
 
