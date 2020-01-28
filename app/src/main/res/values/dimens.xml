@@ -8,10 +8,14 @@
     <dimen name="xdefaultMargin">12dp</dimen>
     <dimen name="minimumMargin">8dp</dimen>
     <dimen name="xminimumMargin">4dp</dimen>
+    <dimen name="xxminimumMargin">2dp</dimen>
 
     <dimen name="default_title_size">28sp</dimen>
+    <dimen name="title_size">24sp</dimen>
     <dimen name="default_subtitle_size">14sp</dimen>
 
     <dimen name="default_size_champion_avatar">40dp</dimen>
     <dimen name="default_size_profile_icon">80dp</dimen>
+
+    <dimen name="default_radius">4dp</dimen>
 </resources>

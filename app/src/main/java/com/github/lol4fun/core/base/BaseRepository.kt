@@ -81,4 +81,16 @@ open class BaseRepository {
             newUser
         )
     }
+
+    suspend fun getChampions(): Resource {
+        return safeApiCall(
+            call = { apiDDragon.getChampionsAsync() }
+        )
+    }
+
+    suspend fun getItems(): Resource {
+        return safeApiCall(
+            call = { apiDDragon.getItemsAsync() }
+        )
+    }
 }

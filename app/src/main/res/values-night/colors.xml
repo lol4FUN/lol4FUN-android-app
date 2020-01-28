@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b15dff</color>
-    <color name="colorPrimaryDark">#7c2bcb</color>
+    <color name="colorPrimary">#0dffffff</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#b15dff</color>
 
     <color name="colorOnBackground">#ffffff</color>
+
+    <color name="colorCircleImageBorder">#ffffff</color>
 
     <color name="colorStatusBar">#000000</color>
     <color name="colorBackground">#121212</color>

@@ -9,4 +9,13 @@
     <style name="DefaultButtonTheme" parent="Widget.MaterialComponents.Button">
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="HeaderText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubtitleText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/default_subtitle_size</item>
+    </style>
 </resources>

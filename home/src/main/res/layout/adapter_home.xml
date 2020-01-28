@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/minimumMargin">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivChampion"
+        android:layout_width="@dimen/default_size_champion_avatar"
+        android:layout_height="@dimen/default_size_champion_avatar"
+        android:src="@drawable/ic_image_default"
+        app:civ_border_color="@color/colorCircleImageBorder"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvKDA"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivChampion"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="11/0/23" />
+
+    <ImageView
+        android:id="@+id/ivItem06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivItem05"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivItem05"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/xxminimumMargin"
+        android:layout_marginRight="@dimen/xxminimumMargin"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="@+id/ivItem06"
+        app:layout_constraintEnd_toStartOf="@+id/ivItem06"
+        app:layout_constraintStart_toEndOf="@+id/ivItem04"
+        app:layout_constraintTop_toTopOf="@+id/ivItem06" />
+
+    <ImageView
+        android:id="@+id/ivItem04"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/xxminimumMargin"
+        android:layout_marginRight="@dimen/xxminimumMargin"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="@+id/ivItem05"
+        app:layout_constraintEnd_toStartOf="@+id/ivItem05"
+        app:layout_constraintStart_toEndOf="@+id/ivItem03"
+        app:layout_constraintTop_toTopOf="@+id/ivItem05" />
+
+    <ImageView
+        android:id="@+id/ivItem03"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/xxminimumMargin"
+        android:layout_marginRight="@dimen/xxminimumMargin"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="@+id/ivItem04"
+        app:layout_constraintEnd_toStartOf="@+id/ivItem04"
+        app:layout_constraintStart_toEndOf="@+id/ivItem02"
+        app:layout_constraintTop_toTopOf="@+id/ivItem04" />
+
+    <ImageView
+        android:id="@+id/ivItem02"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/xxminimumMargin"
+        android:layout_marginRight="@dimen/xxminimumMargin"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="@+id/ivItem03"
+        app:layout_constraintEnd_toStartOf="@+id/ivItem03"
+        app:layout_constraintStart_toEndOf="@+id/ivItem01"
+        app:layout_constraintTop_toTopOf="@+id/ivItem03" />
+
+    <ImageView
+        android:id="@+id/ivItem01"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="@dimen/xxminimumMargin"
+        android:layout_marginRight="@dimen/xxminimumMargin"
+        android:contentDescription="@string/position"
+        android:src="@drawable/ic_image_default"
+        app:layout_constraintBottom_toBottomOf="@+id/ivItem02"
+        app:layout_constraintEnd_toStartOf="@+id/ivItem02"
+        app:layout_constraintStart_toEndOf="@+id/tvKDA"
+        app:layout_constraintTop_toTopOf="@+id/ivItem02" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

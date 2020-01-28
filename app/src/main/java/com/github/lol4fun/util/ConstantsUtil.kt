@@ -27,12 +27,15 @@ class ConstantsUtil {
 
     object Api {
         //todo modularizar com link para regiao do usuário, hoje está apenas para o BR
+        private const val PATCH_LOL = "10.1.1"
+
         const val BASE_URL = "https://br1.api.riotgames.com/lol/"
-        const val BASE_URL_DDRAGON = "http://ddragon.leagueoflegends.com/cdn/"
-        const val BASE_URL_SQUARE_ASSET = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/champion/"
-        const val BASE_URL_PROFILE_ICON = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/"
+        const val BASE_URL_DDRAGON = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/"
+        const val BASE_URL_SQUARE_ASSET = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/img/champion/"
+        const val BASE_URL_ITEM_ASSET = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/img/item/"
+        const val BASE_URL_PROFILE_ICON = "http://ddragon.leagueoflegends.com/cdn/$PATCH_LOL/img/profileicon/"
         const val HEADER_RIOT_TOKEN_NAME = "X-Riot-Token"
-        const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-529915a1-9d95-4145-86ad-85ba26d90968"
+        const val HEADER_RIOT_TOKEN_VALUE = "RGAPI-ed4cebb3-c939-4e95-adb3-6854c1b3af42"
     }
 
     object Error {
@@ -43,5 +46,27 @@ class ConstantsUtil {
 
     object Champions {
         const val NUMBER_OF_COLUMNS_GRID_CHAMPIONS = 4
+    }
+
+    object Match {
+        const val BLUE_SIDE = "Blue"
+        const val RED_SIDE = "Red"
+        const val FLAG_WIN = "Win"
+        const val FLAG_LOSE = "Fail"
+        const val BR_CODE = "BR1"
+        const val RU_CODE = "RU"
+        const val KR_CODE = "KR"
+        const val OCE_CODE = "OC1"
+        const val JP_CODE = "JP1"
+        const val NA_CODE = "NA1"
+        const val EUN_CODE = "EUN1"
+        const val EUW_CODE = "EUW1"
+        const val TR_CODE = "TR1"
+        const val LAN_CODE = "LA1" //Confirmar dps
+        const val LAS_CODE = "LA2" //Confirmar dps
+    }
+
+    object Home {
+        const val PAGE_SIZE = 10
     }
 }
